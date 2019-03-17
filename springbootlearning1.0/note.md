@@ -15,8 +15,9 @@
 
 ## 编写测试类
 
+    cn.danao.controller.HelloController
 - 注意：
 
     使用注解
 
-    cn.danao.controller.HelloController
+    
