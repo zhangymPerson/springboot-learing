@@ -40,13 +40,13 @@ public class HelloController {
 	 * get请求可以使用@GetMapping 注解
 	 * @return
 	 */
-	@GetMapping(value = "/getall")
+	@GetMapping(value = "/getall" )
 	public Result test(){
 		//List<User> list = new ArrayList<>();
 		List list = userDao.getAllUser();
 		if(list == null || list.isEmpty()){
-			//throw new SelfException(ErrorCode.COMMON_SERVER_ERROR);
-			return Result.error(ErrorCode.COMMON_SERVER_ERROR);
+			throw new SelfException(ErrorCode.COMMON_SERVER_ERROR);
+			//return Result.error(ErrorCode.COMMON_SERVER_ERROR);
 		}
 		System.out.println(list.get(0));
 		return Result.success(list);
