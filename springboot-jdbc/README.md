@@ -4,3 +4,7 @@
 
 - 整合druid
 
+- 返回结果的包装
+
+    cn.danao.common.result.Result
+    

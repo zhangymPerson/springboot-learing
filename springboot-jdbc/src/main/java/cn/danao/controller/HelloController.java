@@ -1,6 +1,7 @@
 package cn.danao.controller;
 
 import cn.danao.bean.User;
+import cn.danao.common.exception.SelfException;
 import cn.danao.common.result.ErrorCode;
 import cn.danao.common.result.Result;
 import cn.danao.dao.UserDao;
@@ -44,6 +45,7 @@ public class HelloController {
 		//List<User> list = new ArrayList<>();
 		List list = userDao.getAllUser();
 		if(list == null || list.isEmpty()){
+			//throw new SelfException(ErrorCode.COMMON_SERVER_ERROR);
 			return Result.error(ErrorCode.COMMON_SERVER_ERROR);
 		}
 		System.out.println(list.get(0));
