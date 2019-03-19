@@ -1,13 +1,18 @@
 package cn.danao.controller;
 
 import cn.danao.bean.User;
+import cn.danao.common.result.ErrorCode;
+import cn.danao.common.result.Result;
 import cn.danao.dao.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static cn.danao.common.result.Result.success;
 
 /**
  * @author zhang
@@ -19,6 +24,7 @@ import java.util.List;
  * @since 1.0
  */
 @RestController
+@RequestMapping("/user")
 public class HelloController {
 
 	@Autowired
@@ -29,12 +35,19 @@ public class HelloController {
 		return "hello word!";
 	}
 
-	@RequestMapping(value = "/test")
-	public String test(){
-		List<User> list = new ArrayList<>();
-		list = userDao.getAllUser();
+	/**
+	 * get请求可以使用@GetMapping 注解
+	 * @return
+	 */
+	@GetMapping(value = "/getall")
+	public Result test(){
+		//List<User> list = new ArrayList<>();
+		List list = userDao.getAllUser();
+		if(list == null || list.isEmpty()){
+			return Result.error(ErrorCode.COMMON_SERVER_ERROR);
+		}
 		System.out.println(list.get(0));
-		return "success";
+		return Result.success(list);
 	}
 
 }
