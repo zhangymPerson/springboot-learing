@@ -8,8 +8,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @author zhang
  * @version 1.0
  * @classname Applicattion
- * @descriptionclass 1.****************
- * 2.****************
+ * @descriptionclass
+ * 1.mybatis扫描的注解  @MapperScan 指定要扫描的Mapper接口包 和 Mapper类
  * @createdate 2019/3/19
  * @since 1.0
  */

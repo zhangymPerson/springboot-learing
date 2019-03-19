@@ -13,7 +13,7 @@ import java.util.List;
  * @classname UserDao
  * @descriptionclass
  * 1.@Mapper 注解将UserDao申明为一个Mapper接口
- * 2.****************
+ * 2.
  * @createdate 2019/3/19
  * @since 1.0
  */

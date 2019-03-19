@@ -31,12 +31,10 @@ public class HelloController {
 
 	@RequestMapping(value = "/test")
 	public String test(){
-
 		List<User> list = new ArrayList<>();
 		list = userDao.getAllUser();
 		System.out.println(list.get(0));
 		return "success";
-
 	}
 
 }
