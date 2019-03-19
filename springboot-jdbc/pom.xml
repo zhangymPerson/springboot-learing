@@ -12,6 +12,7 @@
     <properties>
         <mybaties.version>1.3.3</mybaties.version>
         <druid.version>1.1.8</druid.version>
+        <druid.springbootstart.version>1.1.14</druid.springbootstart.version>
         <mysql-version>8.0.14</mysql-version>
     </properties>
 
@@ -51,10 +52,19 @@
         </dependency>
 
         <!--druid 数据库链接池 -->
+        <!--
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>druid</artifactId>
             <version>${druid.version}</version>
+        </dependency>
+        -->
+
+        <!--使用 durid-start启动jar包 -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid-spring-boot-starter</artifactId>
+            <version>${druid.springbootstart.version}</version>
         </dependency>
 
         <!--mysql连接工具类-->
