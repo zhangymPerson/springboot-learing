@@ -5,7 +5,6 @@ import org.springframework.cache.jcache.config.JCacheConfigurerSupport;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.ImportResource;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -18,7 +17,8 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
  * @classname RedisConfig
  * @descriptionclass
  * 1.redis需要使用config配置文件
- * 2.****************
+ * 2.读取配置文件中的配置
+ * 可以添加print()查看启动日志中的相关问题
  * @createdate 2019/3/20
  * @since 1.0
  */
@@ -61,6 +61,11 @@ public class RedisConfig extends JCacheConfigurerSupport {
 
 	}
 
+	/**
+	 * 序列化有 两种  string 类型的使用 StringRedisSerializer 序列化方式
+	 * @param factory
+	 * @return
+	 */
 	@Bean
 	public RedisTemplate<String, String> redisTemplate(RedisConnectionFactory factory) {
 		RedisTemplate<String, String> template = new RedisTemplate<String, String>();
