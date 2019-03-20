@@ -16,9 +16,11 @@ public class Test {
 
 
 
-	public static final Jedis jedis = new Jedis("",6379);
+	public static final Jedis jedis = new Jedis("39.104.82.22",6379);
 
 	public static void main(String[] args) {
 		System.out.println("Hello Word");
+		jedis.auth("123456...");
+		jedis.set("a","b");
 	}
 }

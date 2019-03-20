@@ -12,11 +12,13 @@
     <properties>
         <springboot.redis.version>2.1.3.RELEASE</springboot.redis.version>
         <redis.version>2.9.0</redis.version>
+        <fastjson.version>1.2.47</fastjson.version>
     </properties>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
+        <!-- <version>2.1.0.RELEASE</version> -->
         <version>1.3.2.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
@@ -37,19 +39,11 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
-        <!--redis 模块-->
-        <!-- redis -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-redis</artifactId>
-            <version>${springboot.redis.version}</version>
+            <artifactId>spring-boot-starter-redis</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>redis.clients</groupId>
-            <artifactId>jedis</artifactId>
-            <version>${redis.version}</version>
-        </dependency>
 
     </dependencies>
 
