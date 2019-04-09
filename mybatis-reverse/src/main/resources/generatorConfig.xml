@@ -11,8 +11,8 @@
         </commentGenerator>
         <!--数据库连接的信息：驱动类、连接地址、用户名、密码 -->
         <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
-                        connectionURL="jdbc:mysql://127.0.0.1:3306/input?serverTimezone=GMT%2B8" userId="root"
-                        password="123456">
+                        connectionURL="jdbc:mysql://39.107.226.37:3306/personblog?serverTimezone=GMT%2B8" userId="root"
+                        password="zym123,./HAO">
         </jdbcConnection>
         <!-- <jdbcConnection driverClass="oracle.jdbc.OracleDriver"
         connectionURL="jdbc:oracle:thin:@127.0.0.1:1521:yycg"
@@ -26,7 +26,7 @@
         </javaTypeResolver>
         <!-- targetProject:生成PO类的位置 -->
         <!-- 文件路径配置 需要从src/目录下开始配置 -->
-        <javaModelGenerator targetPackage="main.java.cn.danao.po"
+        <javaModelGenerator targetPackage="main.java.cn.danao.dao"
                             targetProject=".\src">
             <!-- enableSubPackages:是否让schema作为包的后缀 -->
             <property name="enableSubPackages" value="false" />
@@ -52,7 +52,9 @@
         <table tableName="orders"></table>
         <table tableName="orderdetail"></table>
         -->
-        <table tableName="user"></table>
+        <table tableName="sys_role"></table>
+        <table tableName="sys_user"></table>
+        <table tableName="sys_role_user"></table>
 
         <!-- <table schema="" tableName="sys_user"></table>
         <table schema="" tableName="sys_role"></table>
