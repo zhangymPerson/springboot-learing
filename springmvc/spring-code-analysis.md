@@ -21,6 +21,10 @@ ApplicationContext 在 context模块下
 前面说的 ApplicationContext 其实就是一个 BeanFactory
 
 
+- FileSystemXmlApplicationContext 的构造函数需要一个 xml 配置文件在系统中的路径，其他和 ClassPathXmlApplicationContext 基本上一样。
+
+- AnnotationConfigApplicationContext 是基于注解来使用的，它不需要配置文件，采用 java 配置类和各种注解来配置，是比较简单的方式，也是大势所趋吧。
+
 
 
 ## 初始化bean
