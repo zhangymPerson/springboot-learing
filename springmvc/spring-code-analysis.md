@@ -11,6 +11,13 @@ ApplicationContext 在 context模块下
 
 [ApplicationContext 源码](https://github.com/spring-projects/spring-framework/blob/master/spring-context/src/main/java/org/springframework/context/ApplicationContext.java)
 
+
+- springcontext的jar包依赖关系
+
+    ![springjar包依赖关系](https://github.com/zhangymPerson/springboot-learing/blob/master/picture/Spring-context%E4%BE%9D%E8%B5%96%E5%85%B3%E7%B3%BB.png)
+
+
+
 前面说的 ApplicationContext 其实就是一个 BeanFactory
 
 
