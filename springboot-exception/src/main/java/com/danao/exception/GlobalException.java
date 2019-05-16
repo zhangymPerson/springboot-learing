@@ -14,4 +14,10 @@ import org.springframework.web.servlet.handler.SimpleMappingExceptionResolver;
  */
 public class GlobalException {
 
+    //todo 这个类是要解决spring 框架中的全局异常管理的
+    public static void main(String[] args) {
+
+    }
+
+
 }
