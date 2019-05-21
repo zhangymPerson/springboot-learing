@@ -20,3 +20,13 @@
         
         <!--配置从 application.properties 中读取日志文件位置 -->
         <springProperty scope="context" name="logging.path" source="logging.path"/>
+        
+        
+- 新增全局异常处理类
+
+    cn.danao.aop.GlobalExceptionHandler
+    
+ 
+    
+    
+    
