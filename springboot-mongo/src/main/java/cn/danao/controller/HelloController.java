@@ -1,6 +1,8 @@
 package cn.danao.controller;
 
+import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoCursor;
 import org.bson.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -37,6 +39,13 @@ public class HelloController {
         //获取集合
         MongoCollection<Document> collection = mongoTemplate.getCollection("goodwill");
         System.out.println(collection);
+        FindIterable findIterable = collection.find();
+        MongoCursor cursor = findIterable.iterator();
+        int i =0;
+        while (cursor.hasNext()) {
+            System.out.println(i++);
+            System.out.println(cursor.next());
+        }
         //System.out.println(mongoTemplate.findAll(Object.class));
         return "success";
     }
