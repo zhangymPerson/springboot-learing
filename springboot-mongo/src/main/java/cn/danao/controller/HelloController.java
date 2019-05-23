@@ -1,5 +1,7 @@
 package cn.danao.controller;
 
+import com.mongodb.client.MongoCollection;
+import org.bson.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,7 +34,10 @@ public class HelloController {
     @RequestMapping(value = "/test1",method = RequestMethod.GET)
     public String test1(){
         System.out.println(mongoTemplate);
-        System.out.println(mongoTemplate.findAll(Object.class));
+        //获取集合
+        MongoCollection<Document> collection = mongoTemplate.getCollection("goodwill");
+        System.out.println(collection);
+        //System.out.println(mongoTemplate.findAll(Object.class));
         return "success";
     }
 
