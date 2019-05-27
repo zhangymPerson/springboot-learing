@@ -4,6 +4,9 @@ import cn.danao.bean.UserInfo;
 import cn.danao.conf.UrlInfo;
 import cn.danao.httpclient.HttpClientUtil;
 import cn.danao.resttemplate.RestTemplateUtil;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +18,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Api("测试入口")
 @RestController
 public class HelloController {
     Logger logger = LoggerFactory.getLogger(HelloController.class);
@@ -29,7 +33,8 @@ public class HelloController {
     public HttpClientUtil httpClientUtil;
 
 
-    @RequestMapping(value = "/test")
+    @ApiOperation("测试get请求")
+    @RequestMapping(value = "/test",method = RequestMethod.GET)
     public Map<String,String>  test(){
         Map<String,String> result = new HashMap<>();
         logger.info("请求路由为:test"  );
@@ -39,7 +44,13 @@ public class HelloController {
             logger.info("无需发起get请求");
         }else {
             for(String url:urls){
+                //todo  测试1
                 String resultStr = restTemplateUtil.doGet(url);
+                logger.warn(String.format("测试1的结果:%s  ",result));
+                //todo 测试2
+                resultStr = httpClientUtil.doGet(url);
+                logger.warn(String.format("测试2的结果:%s",result));
+
                 result.put(url,resultStr);
             }
         }
