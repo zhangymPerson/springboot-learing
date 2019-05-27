@@ -1,8 +1,7 @@
 package cn.danao.controller;
 
 import cn.danao.bean.UserInfo;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
@@ -21,6 +20,12 @@ public class HelloController {
         return "test";
     }
 
+
+    @ApiOperation(value = "测试组合注解",notes="注意事项")
+    @ApiImplicitParams({
+            @ApiImplicitParam(dataType = "int",name = "id",value = "用户id",required = true,paramType = "path"),
+            @ApiImplicitParam(dataType = "string",name = "name",value = "用户信息",required = true,paramType = "body")
+    })
     @RequestMapping(value="/tests/{id}/{name}",method= RequestMethod.GET)
     public Object sayHello(@PathVariable("id") Integer id,@PathVariable("name") String name){
        logger.info("请求/test/"+id+"/"+name);
@@ -34,7 +39,8 @@ public class HelloController {
      * @param id
      * @return
      */
-    @ApiOperation("测试请求参数id")
+    @ApiOperation(value = "测试swagger的请求参数配置" ,notes = "参数说明 id 必须为为数字")
+    @ApiImplicitParam(name = "id",value = "用户id",dataType = "String",paramType = "path")
     @RequestMapping(value="/tests/{id}",method= RequestMethod.GET)
     public String sayHellos(@PathVariable("id") Integer id){
         logger.info("请求/test/"+id);
