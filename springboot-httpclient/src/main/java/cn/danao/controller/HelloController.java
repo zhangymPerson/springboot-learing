@@ -43,14 +43,17 @@ public class HelloController {
         if(urls.isEmpty()){
             logger.info("无需发起get请求");
         }else {
+            Map<String,String> params = new HashMap<>();
+            params.put("id","1");
+            params.put("name","name");
             for(String url:urls){
                 //todo  测试1
-                String resultStr = restTemplateUtil.doGet(url);
-                logger.warn(String.format("测试1的结果:%s  ",result));
+                String resultStr = "";
+                //resultStr = restTemplateUtil.doGet(url);
+                //logger.warn(String.format("测试1的结果:%s  ",resultStr));
                 //todo 测试2
-                resultStr = httpClientUtil.doGet(url);
-                logger.warn(String.format("测试2的结果:%s",result));
-
+                resultStr = httpClientUtil.doGet(url,params);
+                logger.warn(String.format("测试2的结果:%s",resultStr));
                 result.put(url,resultStr);
             }
         }

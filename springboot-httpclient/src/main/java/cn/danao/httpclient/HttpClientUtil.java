@@ -3,6 +3,7 @@ package cn.danao.httpclient;
 
 
 import cn.danao.http.HttpRequest;
+import cn.danao.util.MapUtils;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.config.RequestConfig;
@@ -19,6 +20,7 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.text.ParseException;
+import java.util.Iterator;
 import java.util.Map;
 
 /**
@@ -55,8 +57,8 @@ public class HttpClientUtil implements HttpRequest {
             if (responseEntity != null) {
                 //todo EntityUtils.toString(HttpEntity)方法中操作的是流数据，流数据是一次性数据所以同一个HttpEntity不能使用多次该方法
                 result =  EntityUtils.toString(responseEntity);
-                System.out.println("响应内容长度为:" + responseEntity.getContentLength());
-                System.out.println("响应内容为:" + result);
+                logger.info("响应内容长度为:" + responseEntity.getContentLength());
+                logger.info("响应内容为:" + result);
             }
         } catch (ClientProtocolException e) {
             e.printStackTrace();
@@ -81,23 +83,30 @@ public class HttpClientUtil implements HttpRequest {
     @Override
     public String doGet(String url, Map<String, String> map) {
         String result = "";
-        logger.info(String.format("要请求的url: %s ;请求的参数是:%s"),url,"test");
+        System.out.println(url);
+        System.out.println(MapUtils.hashmapToString(map));
+        logger.info(String.format("要请求的url %s ",url,MapUtils.hashmapToString(map)));
         // 获得Http客户端(可以理解为:你得先有一个浏览器;注意:实际上HttpClient与浏览器是不一样的)
         CloseableHttpClient httpClient = HttpClientBuilder.create().build();
         // 参数
         StringBuffer params = new StringBuffer();
-        try {
-            // 字符数据最好encoding以下;这样一来，某些特殊字符才能传过去(如:某人的名字就是“&”,不encoding的话,传不过去)
-            params.append("name=" + URLEncoder.encode("&", "utf-8"));
-            params.append("&");
-            params.append("age=24");
-        } catch (UnsupportedEncodingException e1) {
-            e1.printStackTrace();
+        if(map.isEmpty()){
+            params =  params .append("");
+        }else {
+            Iterator iter = map.entrySet().iterator();
+            while (iter.hasNext()) {
+                Map.Entry entry = (Map.Entry) iter.next();
+                Object key = entry.getKey();
+                params.append( key);
+                Object val = entry.getValue();
+                params.append("=" + val + "&");
+            }
         }
-
+        String param = params.substring(0,params.length()-1);
+        logger.warn(String.format("params : %s",param));
         // 创建Get请求
-        HttpGet httpGet = new HttpGet(url + "?" + params);
-        logger.info(String.format("要请求的url: %s ;请求的参数是:%s"),url + "?" + params);
+        HttpGet httpGet = new HttpGet(url + "?" + param);
+        logger.info(String.format("要请求的url: %s ;请求的参数是:%s",url ,param));
         // 响应模型
         CloseableHttpResponse response = null;
             // 配置信息
@@ -120,8 +129,8 @@ public class HttpClientUtil implements HttpRequest {
             HttpEntity responseEntity = response.getEntity();
             System.out.println("响应状态为:" + response.getStatusLine());
             if (responseEntity != null) {
-                System.out.println("响应内容长度为:" + responseEntity.getContentLength());
-                System.out.println("响应内容为:" + EntityUtils.toString(responseEntity));
+                result = EntityUtils.toString(responseEntity);
+                logger.info(String.format("响应内容为:%s",result ));
             }
         } catch (IOException e) {
             e.printStackTrace();
