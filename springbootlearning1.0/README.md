@@ -28,3 +28,10 @@
 |    @ImportResource|    用来加载xml配置文件。
 |    @Service|    一般用于修饰service层的组件
 |    @Repository|    使用@Repository注解可以确保DAO或者repositories提供异常转译，这个注解修饰的DAO或者repositories类会被ComponetScan发现并配置，同时也不需要为它们提供XML配置项。
+
+
+- 拦截器 
+
+    编写拦截器代码 实现HandlerInterceptor 接口
+    
+    配置拦截器使其生效
