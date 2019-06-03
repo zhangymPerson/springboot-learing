@@ -1,6 +1,7 @@
 package cn.danao.controller;
 
 import cn.danao.bean.UserInfo;
+import cn.danao.conf.PropertyPlaceholder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,11 @@ public class HelloController {
     @RequestMapping(value = "/test")
     public String  test(){
         logger.info("请求路由为:test"  );
+        String test = PropertyPlaceholder.getPropertyForStr("test");
+        String test1 = PropertyPlaceholder.getPropertyForStr("test1");
+
+        logger.info("test {}  test1 {}",test,test1);
+
         return "test";
     }
 
