@@ -51,3 +51,19 @@
 
     @ImportResource(locations = {"classpath:applicationContext.xml"})
     
+- 另一种配置文件可以使用注解
+
+    参考这个类
+    cn.danao.conf.PropertiesConfig
+    
+    注解
+    
+    @Configuration()
+
+    @PropertySource("classpath:pro.properties")
+
+    **@PropertySource 这个注解可以指定具体的属性配置文件，优先级比较低。**
+
+    @Value("${key}")
+
+    **注意:这种方式和上面的直接工具类读取的方式有冲突**
