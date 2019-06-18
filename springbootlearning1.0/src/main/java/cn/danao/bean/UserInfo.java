@@ -59,6 +59,9 @@ public class UserInfo {
         this.remark = remark;
     }
 
+    public UserInfo() {
+    }
+
     @Override
     public String toString() {
         return "UserInfo{" +

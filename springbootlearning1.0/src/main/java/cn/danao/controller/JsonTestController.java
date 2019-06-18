@@ -33,15 +33,30 @@ public class JsonTestController {
         String userInfoJson = JSON.toJSONString(userInfo);
         //{"age":21,"id":0,"name":"ma","remark":"测试","sex":"男"}
         log.info("userInfoJson {} " , userInfoJson);
-        return ResultCode.SUCCESS;
+        return ResultCode.getResultCode(userInfo);
     }
 
 
-    @RequestMapping(value = "/test",method = RequestMethod.POST)
+    /**
+     * 请求格式为post请求
+     * 请求内容为json串 {"age":21,"id":0,"name":"ma","remark":"测试","sex":"男"}
+     * 请求头设置为 Content-Type ： application/json
+     * Body的格式为row
+     * Spring接收json 的bean对象必须有无参构造函数
+     * Spring 接收json必须使用@RequestBody注解
+     * @param userInfo
+     * @return
+     */
+    @RequestMapping(value = "/test",method = RequestMethod.POST,produces={"application/json;charset=UTF-8"})
     public ResultCode testJson(@RequestBody UserInfo userInfo){
-        log.info("userInfo ()",userInfo);
+        log.info("userInfo {}",userInfo);
         return ResultCode.SUCCESS;
     }
 
+    @RequestMapping(value = "/tests",method = RequestMethod.POST,produces={"application/json;charset=UTF-8"})
+    public ResultCode testJsons(@RequestBody UserInfo userInfo){
+        log.info("userInfo {}",userInfo);
+        return ResultCode.SUCCESS;
+    }
 
 }

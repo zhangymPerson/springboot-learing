@@ -16,10 +16,12 @@ public class ResultCode {
 
     private String msg;
 
+    private Object data;
+
     //正确返回
-    public static ResultCode SUCCESS = new ResultCode(200,"SUCCESS");
+    public static ResultCode SUCCESS = new ResultCode(200,"SUCCESS","请求成功!");
     //错误返回
-    public static ResultCode ERROR = new ResultCode(200,"SUCCESS");
+    public static ResultCode ERROR = new ResultCode(200,"SUCCESS","请求错误!");
 
     private ResultCode(){
         super();
@@ -29,6 +31,24 @@ public class ResultCode {
     private ResultCode(int code,String msg){
         this.code=code;
         this.msg=msg;
+    }
+
+    private ResultCode(int code, String msg, Object  data) {
+        this.code = code;
+        this.msg = msg;
+        this.data = data;
+    }
+
+    public static ResultCode getResultCode(Object data){
+        return new ResultCode(200,"SUCCESS",data);
+    }
+
+    public Object getData() {
+        return data;
+    }
+
+    public void setData(Object data) {
+        this.data = data;
     }
 
     public int getCode() {
