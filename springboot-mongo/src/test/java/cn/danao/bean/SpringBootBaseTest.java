@@ -1,10 +1,12 @@
-package cn.danao.controller;
+package cn.danao.bean;
 
 import lombok.extern.slf4j.Slf4j;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
@@ -17,8 +19,9 @@ import org.springframework.test.context.web.WebAppConfiguration;
  * @createdate 2019/6/19 9:59
  * @since 1.0
  */
-
-@RunWith(SpringRunner.class)
+//@RunWith(SpringRunner.class)
+//@RunWith(JUnit4.class)
+@RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest
 @WebAppConfiguration
 @Slf4j

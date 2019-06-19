@@ -1,7 +1,7 @@
 package cn.danao.test;
 
+import cn.danao.bean.SpringBootBaseTest;
 import cn.danao.bean.User;
-import cn.danao.controller.SpringBootBaseTest;
 import cn.danao.dao.UserDao;
 import cn.danao.dao.UserDaoTest;
 import lombok.extern.slf4j.Slf4j;
@@ -15,7 +15,8 @@ import java.util.List;
  * @author danao
  * @version 1.0
  * @classname SpringTest
- * @descriptionclass 1.类的作用
+ * @descriptionclass
+ * 1.测试mongo操作的各种类型
  * 2.其他说明
  * @createdate 2019/6/19 10:05
  * @since 1.0
@@ -53,7 +54,16 @@ public class SpringTest extends SpringBootBaseTest {
     @Test
     public void testUserDaoTest(){
         User user = getUser();
+        //插入
         userDaoTest.insert(user);
+        log.info("修改前:{}",userDaoTest.findById(user.userId));
+        //修改
+        user.setName("修改后的名字");
+        userDaoTest.save(user);
+        log.info("修改后:{}",userDaoTest.findById(user.userId));
+        //删除
+        userDaoTest.deleteById(user.userId);
+        //查询全部
         List<User> list = userDaoTest.findAll();
         log.info("{}",list);
     }
