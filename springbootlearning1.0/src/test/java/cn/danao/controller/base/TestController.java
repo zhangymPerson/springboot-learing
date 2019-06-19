@@ -1,5 +1,6 @@
 package cn.danao.controller.base;
 
+import lombok.extern.slf4j.Slf4j;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.runner.RunWith;
@@ -42,17 +43,19 @@ import org.springframework.test.context.junit4.SpringRunner;
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest
+@Slf4j
 public class TestController {
 
-    Logger logger = LoggerFactory.getLogger(this.getClass());
     @Before
     public void setUp() throws Exception {
-        logger.info("==> 测试开始执行 <==");
+        String startMsg = "测试开始信息";
+        log.info("{}",startMsg);
     }
 
     @After
     public void tearDown() throws Exception {
-        logger.info("==> 测试执行完成 <===");
+        String endMsg = "测试结束信息";
+        log.info("{}",endMsg);
     }
 
 }
