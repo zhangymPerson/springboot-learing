@@ -25,3 +25,7 @@
     
     一种是自定义接口 cn.danao.dao.UserDao 然后实现其中的方法 cn.danao.dao.imp.UserDaoImp
     主要使用 org.springframework.data.mongodb.core.MongoTemplate 这个对象对bean对象进行操作
+    
+- springboot的测试
+
+    cn.danao.controller.SpringBootBaseTest 类为springboot基准测试基类

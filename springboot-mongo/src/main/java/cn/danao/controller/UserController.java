@@ -14,7 +14,8 @@ import java.util.Date;
  * @author danao
  * @version 1.0
  * @classname UserController
- * @descriptionclass 1.类的作用
+ * @descriptionclass
+ * 1.mongo类的测试请求
  * 2.其他说明
  * @createdate 2019/5/30 15:21
  * @since 1.0
@@ -40,15 +41,26 @@ public class UserController {
     @RequestMapping(value = "/mongo")
     public String mongoTest(){
         log.info("/mongo");
-        User user = new User();
-        user.setUserId("1234");
-        user.setCreateDate(new Date());
-        user.setName("steestr");
-        userDao.insert(user);
-        user.setUserId("12345");
-        user.setCreateDate(new Date());
+        //测试专用
+        User user = getUser();
         userDaoTest.insert(user);
         return "test";
+    }
+
+    /**
+     * 根据时间作为id生成用户，避免插入报错
+     * @return
+     */
+    public User getUser(){
+        User user = new User();
+        String id = String.valueOf(new Date().getTime());
+        log.info(id);
+        user.setUserId(id);
+        user.setCreateDate(new Date());
+        user.setName("测试人员");
+        user.setAge(18);
+        log.info("user {}",user);
+        return user;
     }
 
 }
