@@ -17,22 +17,50 @@ function log(){
 	logs INFO $*
 }
 
+
+cmd(){
+    #判断命令是否存在
+    commandName=$1
+    
+    which ${commandName} > /dev/null
+    if [ $? -eq 0 ]
+    then
+        log ${commandName} "存在"
+    else
+        log ${commandName} "不存在，请先安装maven"
+        exit 1
+    fi
+}
+
+mvnRum(){
+    if [[ $1 -eq 1 ]]; 
+    then
+        log "1"
+        mvn clear
+    elif  [[ $1 -eq 2 ]];
+    then
+        log "2"
+        mvn package
+    elif [[ $1 -eq 3 ]];
+    then
+        log "3"
+        mvn test
+    else
+        mvn help
+    fi
+}
+
 # 编辑测试代码
 # 输出日志
 if [ $# -eq 1 ]; then
+	cmd "mvn"
 	log "第一个参数是:" $1
+    mvnRum $1
 	exit 1
 else
-	logs ERROR "只需要一个参数"
+	logs ERROR "脚本需要一个参数"
+	logs ERROR "1 清理 2 打包 3 测试"
 	exit 1
 fi
 
 
-logs ERROR error-info
-log log-info
-
-if [ $? -eq 0 ]; then
-    echo "success"
-else
-    echo "fail"
-fi
