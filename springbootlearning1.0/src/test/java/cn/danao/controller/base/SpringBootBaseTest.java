@@ -1,12 +1,16 @@
 package cn.danao.controller.base;
 
+import cn.danao.test.SpringTest;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
+import org.junit.runners.Suite;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.junit4.SpringRunner;
 
 /**
@@ -41,10 +45,12 @@ import org.springframework.test.context.junit4.SpringRunner;
  * @createdate 2019/6/4 16:23
  * @since 1.0
  */
-@RunWith(SpringRunner.class)
+//@RunWith(SpringRunner.class)
+@RunWith(JUnit4.class)
+//@RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest
 @Slf4j
-public class TestController {
+public class SpringBootBaseTest {
 
     @Before
     public void setUp() throws Exception {

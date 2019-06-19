@@ -5,8 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="737de5e5-170b-4480-a414-b087bdeac8bf" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../springbootlearning1.0/src/test/java/cn/danao/controller/base/SpringBootBaseTestSuite.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../springbootlearning1.0/src/test/java/cn/danao/test/SpringTestOne.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../springbootlearning1.0/src/test/java/cn/danao/test/SpringTestTwo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../springbootlearning1.0/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../springbootlearning1.0/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springbootlearning1.0/src/test/java/cn/danao/controller/base/TestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../springbootlearning1.0/src/test/java/cn/danao/controller/base/TestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../springbootlearning1.0/src/test/java/cn/danao/controller/base/TestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../springbootlearning1.0/src/test/java/cn/danao/controller/base/SpringBootBaseTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../springbootlearning1.0/src/test/java/cn/danao/test/SpringTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../springbootlearning1.0/src/test/java/cn/danao/test/SpringTest.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -461,7 +466,7 @@
     <property name="RequestMappingsPanelWidth1" value="75" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1560911475635" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1560912520260" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -605,7 +610,7 @@
       <workItem from="1558665147738" duration="3364000" />
       <workItem from="1559199523314" duration="1930000" />
       <workItem from="1559201489670" duration="3325000" />
-      <workItem from="1560907691295" duration="3773000" />
+      <workItem from="1560907691295" duration="4372000" />
     </task>
     <servers />
   </component>
@@ -636,7 +641,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="17783000" />
+    <option name="totallyTimeSpent" value="18382000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
