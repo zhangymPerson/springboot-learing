@@ -54,7 +54,7 @@ public class HelloController {
     }
 
     /**
-     * 请求方式 /zym/test1?id=123
+     * 请求方式 /danao/test1?id=123
      * @param id
      * @return
      */
