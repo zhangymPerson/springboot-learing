@@ -19,7 +19,8 @@ public class ResponseUtils {
      * @param isToJson 是否转化为json
      */
     public static void write(HttpServletResponse response, Object data, boolean isToJson) {
-        response.setCharacterEncoding("UTF-8");
+        //response.setCharacterEncoding("utf-8");
+        response.setContentType("utf-8");
         Gson gson = new GsonBuilder()
                 .setPrettyPrinting()
                 .create();
@@ -37,7 +38,7 @@ public class ResponseUtils {
     }
 
     public static void write(HttpServletResponse response, Object data) {
-        response.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("utf-8");
         Gson gson = new GsonBuilder()
                 .setPrettyPrinting()
                 .create();
@@ -52,7 +53,7 @@ public class ResponseUtils {
     }
 
     public static void write(HttpServletResponse response) {
-        response.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("utf-8");
         Gson gson = new GsonBuilder()
                 .setPrettyPrinting()
                 .create();
@@ -67,7 +68,7 @@ public class ResponseUtils {
     }
 
     public static void write(HttpServletResponse response, ResultBody requestBody) {
-        response.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("utf-8");
         Gson gson = new GsonBuilder()
                 .setPrettyPrinting()
                 .create();

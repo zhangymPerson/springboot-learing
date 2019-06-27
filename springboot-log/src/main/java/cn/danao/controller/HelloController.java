@@ -11,18 +11,19 @@ import org.springframework.web.bind.annotation.RestController;
  * @author zhang
  * @version 1.0
  * @classname HelloController
- * @descriptionclass 1.****************
+ * @descriptionclass
+ * 1.****************
  * 2.****************
  * @createdate 2019/3/20
  * @since 1.0
  */
 @RestController
-@RequestMapping(value = "/test")
+@RequestMapping(value = "/hello")
 public class HelloController {
 
 	Logger logger = LoggerFactory.getLogger(HelloController.class);
 
-	@GetMapping("/hello")
+	@GetMapping(value = "/hello", produces="application/json;charset=UTF-8")
 	public String sayHello(){
 
 		logger.info("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
@@ -32,14 +33,16 @@ public class HelloController {
 		logger.error("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
 
 
-		double i =0.0;
-		i =3/0;
-
-
-		return "Hello word !";
+		//double i 	=0.0;
+		//i =3/0;
+		return "测试中文字符 !";
 	}
 
-
+	@GetMapping(value = "/test")
+	public String test(){
+		logger.info("请求/test");
+			return "测试中文内容";
+	}
 
 
 }

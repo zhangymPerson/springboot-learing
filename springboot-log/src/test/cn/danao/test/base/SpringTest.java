@@ -19,8 +19,5 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @RunWith(SpringJUnit4ClassRunner.class)
 @Slf4j
 public class SpringTest {
-    public static void main(String[] args) {
-        log.info("测试");
-        System.out.println("测试");
-    }
+
 }

@@ -61,12 +61,14 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(value = Exception.class)
     @ResponseBody
     public void errorHandlerOverJson(Exception exception, HttpServletResponse response) {
+        exception.printStackTrace();
         Long errorCode = -1L;
         String message = "接口异常，请查看后台日志";
         ResultBody resultBody = new ResultBody();
         resultBody.setCode(errorCode);
         resultBody.setMessage(message);
-        LOGGER.error("异常信息:{}",exception.getMessage());
+        LOGGER.error("异常信息:{}",exception.getLocalizedMessage());
+        LOGGER.error("异常信息:{},{}",exception.getMessage(),resultBody);
         ResponseUtils.write(response,resultBody);
     }
 }

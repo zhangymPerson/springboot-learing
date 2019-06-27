@@ -4,7 +4,6 @@ import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
-import java.util.Date;
 
 /**
  * @author danao
@@ -19,5 +18,21 @@ import java.util.Date;
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface LogNote {
-    public Date date = null;
+    /**
+     * 类信息
+     * @return
+     */
+    Class cla();
+
+    /**
+     * 日志说明
+     * @return
+     */
+    String value();
+
+    /**
+     * 日志信息
+     * @return
+     */
+    String info();
 }

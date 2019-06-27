@@ -63,6 +63,15 @@ public class ResultBody {
         return result;
     }
 
+    @Override
+    public String toString() {
+        return "ResultBody{" +
+                "code=" + code +
+                ", message='" + message + '\'' +
+                ", result=" + result +
+                '}';
+    }
+
     public ResultBody setResult(Object result) {
         this.result = result;
         return this;
