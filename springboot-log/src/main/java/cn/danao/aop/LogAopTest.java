@@ -34,7 +34,9 @@ public class LogAopTest {
         if(methodSignature == null){
             //可能获取到接口的方法，此处可能为空
         }else {
+            //利用切面技术获取每次方法调用
             Method method  = methodSignature.getMethod();
+            //利用注解来获取注解的信息，可以定制特定的日志格式，方便分析处理
             LogNote logNote = method.getAnnotation(LogNote.class);
             String date = new Date().toString();
             String className = "";
