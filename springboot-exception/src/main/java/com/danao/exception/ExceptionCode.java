@@ -12,8 +12,9 @@ package com.danao.exception;
 public class ExceptionCode {
 
     public static ExceptionCode DEFAULT = new ExceptionCode();
-    public static ExceptionCode BYZERO = new ExceptionCode(101,"除数不能为0");
-    public static ExceptionCode SELF = new ExceptionCode(111,"自定义异常");
+    public static ExceptionCode BYZERO = new ExceptionCode(501,"除数不能为0");
+    public static ExceptionCode SELF = new ExceptionCode(511,"自定义异常");
+    public static ExceptionCode SELF_INFO = new ExceptionCode(510,"自定义异常，异常信息：%s");
 
     private int code;
     private String msg;
@@ -42,13 +43,27 @@ public class ExceptionCode {
         this.msg = msg;
     }
 
-    public ExceptionCode(){
-        this.code=100;
+    private ExceptionCode(){
+        this.code=500;
         this.msg="未知错误";
     }
 
-    public ExceptionCode(int code,String msg){
+    private ExceptionCode(int code,String msg){
         this.code=code;
         this.msg=msg;
     }
+
+    public ExceptionCode fillArgs(String... args){
+        int code = this.code;
+        String message = String.format(this.msg, args);
+        return new ExceptionCode(code, message);
+    }
+
+    public ExceptionCode fillClassNameArgs(Class classObject,String... args){
+        int code = this.code;
+        String message = String.format(this.msg,args);
+        String msg = String.format("异常类:%s,异常信息:%s", classObject.getName(),message);
+        return new ExceptionCode(code,msg);
+    }
+
 }

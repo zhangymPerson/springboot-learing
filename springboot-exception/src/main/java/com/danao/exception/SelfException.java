@@ -11,12 +11,32 @@ package com.danao.exception;
  */
 public class SelfException  extends RuntimeException{
 
-    public SelfException(){
-        super();
+    private static final long serialVersionUID = 1L;
+
+    /**
+     * 自定义异常
+     */
+    private ExceptionCode exceptionCode;
+
+    public SelfException(String exceptionStr){
+        super(exceptionStr);
     }
 
-    public SelfException(String exceptionInfo){
-        super(exceptionInfo);
+    public SelfException(ExceptionCode cm) {
+        super(cm.toString());
+        System.out.println(cm.toString());
+        this.exceptionCode = cm;
     }
+
+    public SelfException(ExceptionCode cm, Exception ex) {
+        super(cm.toString());
+        this.exceptionCode = cm;
+        this.exceptionCode.setMsg(this.exceptionCode.getMsg() + "\\r\\n" + ex.getMessage());
+    }
+
+    public ExceptionCode getCm() {
+        return exceptionCode;
+    }
+
 
 }

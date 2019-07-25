@@ -13,12 +13,14 @@ import org.springframework.web.servlet.handler.SimpleMappingExceptionResolver;
  * 1.全局异常处理类
  * ControllerAdvice 这个注解就是获取全局异常处理的
  * 这个注解只能处理controller里面的异常
+ * 为了避免返回错误页面。可以将异常捕获，返回异常的json串
  * 2.todo 这个类是要解决spring 框架中的全局异常管理的
  * @createdate 2019/5/9 9:17
  * @since 1.0
  */
 @ControllerAdvice
 public class GlobalException {
+
 
 
     /**
@@ -34,12 +36,13 @@ public class GlobalException {
 
     /**
      * 这里的注解可以指定需要捕获的异常类型
+     * @param selfException 可以添加参数
      * @return
      */
     @ExceptionHandler(SelfException.class)
     @ResponseBody
-    public ExceptionCode selfException(){
-        return ExceptionCode.SELF;
+    public ExceptionCode selfException(SelfException selfException){
+        return selfException.getCm();
     }
 
 }
