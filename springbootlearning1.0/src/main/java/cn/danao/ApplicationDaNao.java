@@ -1,5 +1,6 @@
 package cn.danao;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ImportResource;
@@ -9,8 +10,11 @@ import org.springframework.context.annotation.ImportResource;
  */
 @ImportResource(locations = {"classpath:applicationContext.xml"})
 @SpringBootApplication
+@Slf4j
 public class ApplicationDaNao {
     public static void main(String[] args) {
         SpringApplication.run(ApplicationDaNao.class);
+        String url = "http://127.0.0.1:8080/danao/start/success";
+        log.info("项目访问地址: {}",url);
     }
 }
