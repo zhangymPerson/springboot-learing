@@ -11,8 +11,7 @@ import java.util.Map;
  * @author danao
  * @version 1.0
  * @classname StartController
- * @descriptionclass
- * 1.测试项目启动
+ * @descriptionclass 1.测试项目启动
  * 2.其他说明
  * @createdate 2019/7/30 17:18
  * @since 1.0
@@ -39,48 +38,50 @@ public class StartController {
     /**
      * 测试get   请求参数
      * 需要两个参数 params:value 和 num:数字 类型与后台代码一致
+     *
      * @param argOne
      * @param argTwo
      * @return
      */
-    @RequestMapping(value = "/params",method = RequestMethod.GET)
-    public String isParams(@RequestParam String argOne,@RequestParam int argTwo) {
-        log.info("请求的是参数测试接口，请求参数 [ {} {} ]", argOne,argTwo);
+    @RequestMapping(value = "/params", method = RequestMethod.GET)
+    public String isParams(@RequestParam String argOne, @RequestParam int argTwo) {
+        log.info("请求的是参数测试接口，请求参数 [ {} {} ]", argOne, argTwo);
         Map<String, Object> params = new HashMap<>();
-        params.put("status",200);
-        params.put("msg","success");
-        params.put("result","请求参数，argOne = " + argOne + ",argTwo = " +argTwo);
+        params.put("status", 200);
+        params.put("msg", "success");
+        params.put("result", "请求参数，argOne = " + argOne + ",argTwo = " + argTwo);
         return JSON.toJSONString(params);
     }
 
     /**
      * post发送json请求的测试接口
+     *
      * @param params
      * @return
      */
-    @RequestMapping(value = "/params/post/json" ,produces = {"application/json;charset=UTF-8"},method = RequestMethod.POST)
+    @RequestMapping(value = "/params/post/json", produces = {"application/json;charset=UTF-8"}, method = RequestMethod.POST)
     public String isParamsPostJson(@RequestBody Map<String, Object> params) {
         log.info("请求的是参数测试接口，请求参数 [{}]", params);
         params.put("status", "200");
         params.put("msg", "测试成功");
         return JSON.toJSONString(params);
     }
+
     /**
      * post发送json请求的测试接口
+     *
      * @param argOne
      * @param argTwo
      * @return
      */
-    @RequestMapping(value = "/params/post" ,method = RequestMethod.POST)
-    public String isParamsPost(@RequestParam String argOne,@RequestParam String argTwo) {
-        log.info("请求的是参数测试接口，请求参数 [{} {}]", argOne,argTwo);
+    @RequestMapping(value = "/params/post", method = RequestMethod.POST)
+    public String isParamsPost(@RequestParam String argOne, @RequestParam String argTwo) {
+        log.info("请求的是参数测试接口，请求参数 [{} {}]", argOne, argTwo);
         Map<String, Object> params = new HashMap<>();
         params.put("status", "200");
         params.put("msg", "测试成功" + "参数" + argOne + "," + argTwo);
         return JSON.toJSONString(params);
     }
-
-
 
 
 }

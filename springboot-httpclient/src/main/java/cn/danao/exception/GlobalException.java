@@ -1,0 +1,39 @@
+package cn.danao.exception;
+
+/**
+ * @author danao
+ * @version 1.0
+ * @classname GlobalException
+ * @descriptionclass 1.类的作用
+ * 2.其他说明
+ * @createdate 2019/7/31 11:00
+ * @since 1.0
+ */
+public class GlobalException extends RuntimeException {
+    private static final long serialVersionUID = 1L;
+
+    /**
+     * 自定义异常
+     */
+    private ExceptionCode exceptionCode;
+
+    public GlobalException(String exceptionStr) {
+        super(exceptionStr);
+    }
+
+    public GlobalException(ExceptionCode cm) {
+        super(cm.toString());
+        System.out.println(cm.toString());
+        this.exceptionCode = cm;
+    }
+
+    public GlobalException(ExceptionCode cm, Exception ex) {
+        super(cm.toString());
+        this.exceptionCode = cm;
+        this.exceptionCode.setMsg(this.exceptionCode.getMsg() + "\\r\\n" + ex.getMessage());
+    }
+
+    public ExceptionCode getCm() {
+        return exceptionCode;
+    }
+}
