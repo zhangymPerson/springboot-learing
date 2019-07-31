@@ -63,14 +63,20 @@ public class StartController {
     }
     /**
      * post发送json请求的测试接口
-     * @param params
+     * @param argOne
+     * @param argTwo
      * @return
      */
     @RequestMapping(value = "/params/post" ,method = RequestMethod.POST)
-    public String isParamsPost(@RequestBody Map<String, Object> params,@RequestParam String postKey) {
-        log.info("请求的是参数测试接口，请求参数 [{} {}]", params,postKey);
+    public String isParamsPost(@RequestParam String argOne,@RequestParam String argTwo) {
+        log.info("请求的是参数测试接口，请求参数 [{} {}]", argOne,argTwo);
+        Map<String, Object> params = new HashMap<>();
         params.put("status", "200");
-        params.put("msg", "测试成功");
+        params.put("msg", "测试成功" + "参数" + argOne + "," + argTwo);
         return JSON.toJSONString(params);
     }
+
+
+
+
 }

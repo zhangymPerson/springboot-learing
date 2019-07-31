@@ -71,14 +71,13 @@
         no main manifest attribute, in springbootlearingone-1.0-SNAPSHOT.jar
     -->
     <build>
-        <!--
+        <!--打jar包插件-->
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
         </plugins>
-        -->
     </build>
 
 </project>
