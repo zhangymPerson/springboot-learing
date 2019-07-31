@@ -1,31 +1,31 @@
-package cn.danao.httpclient;
+package cn.danao.util.http.httpclient;
 
 
 import cn.danao.exception.ExceptionCode;
 import cn.danao.exception.GlobalException;
-import cn.danao.http.HttpRequest;
-import cn.danao.util.MapUtils;
+import cn.danao.util.http.HttpRequest;
 import com.alibaba.fastjson.JSON;
 import org.apache.http.HttpEntity;
+import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.config.RequestConfig;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.ContentType;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
+import org.apache.http.impl.client.HttpClients;
+import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
-import java.text.ParseException;
-import java.util.Iterator;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author danao
@@ -36,16 +36,16 @@ import java.util.Map;
  * @createdate 2019/5/24 16:28
  * @since 1.0
  */
-@Component(value = "httpClient")
+@Component
 public class HttpClientUtil implements HttpRequest {
 
 
     private Logger logger = LoggerFactory.getLogger(HttpClientUtil.class);
 
     @Override
-    public String doGet(String url) {
+    public Map<String, Object> doGet(String url) {
         logger.info(String.format("要请求的url :%s", url));
-        String result = "";
+        Map<String, Object> result = new HashMap<>();
         // 获得Http客户端(可以理解为:你得先有一个浏览器;注意:实际上HttpClient与浏览器是不一样的)
         CloseableHttpClient httpClient = HttpClientBuilder.create().build();
         // 创建Get请求
@@ -55,15 +55,7 @@ public class HttpClientUtil implements HttpRequest {
         try {
             // 由客户端执行(发送)Get请求
             response = httpClient.execute(httpGet);
-            // 从响应模型中获取响应实体
-            HttpEntity responseEntity = response.getEntity();
-            System.out.println("响应状态为:" + response.getStatusLine());
-            if (responseEntity != null) {
-                //todo EntityUtils.toString(HttpEntity)方法中操作的是流数据，流数据是一次性数据所以同一个HttpEntity不能使用多次该方法
-                result = EntityUtils.toString(responseEntity);
-                logger.info("响应内容长度为:" + responseEntity.getContentLength());
-                logger.info("响应内容为:" + result);
-            }
+            result = getResult(response);
         } catch (ClientProtocolException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -85,11 +77,9 @@ public class HttpClientUtil implements HttpRequest {
     }
 
     @Override
-    public String doGet(String url, Map<String, String> map) {
-        String result = "";
+    public Map<String, Object> doGet(String url, Map<String, Object> map) {
+        Map<String, Object> result = new HashMap<>();
         System.out.println(url);
-        System.out.println(MapUtils.hashmapToString(map));
-        logger.info(String.format("要请求的url %s ", url, MapUtils.hashmapToString(map)));
         // 获得Http客户端(可以理解为:你得先有一个浏览器;注意:实际上HttpClient与浏览器是不一样的)
         CloseableHttpClient httpClient = HttpClientBuilder.create().build();
         // 参数
@@ -129,13 +119,7 @@ public class HttpClientUtil implements HttpRequest {
         // 由客户端执行(发送)Get请求
         try {
             response = httpClient.execute(httpGet);
-            // 从响应模型中获取响应实体
-            HttpEntity responseEntity = response.getEntity();
-            System.out.println("响应状态为:" + response.getStatusLine());
-            if (responseEntity != null) {
-                result = EntityUtils.toString(responseEntity);
-                logger.info(String.format("响应内容为:%s", result));
-            }
+            result = getResult(response);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -143,21 +127,14 @@ public class HttpClientUtil implements HttpRequest {
     }
 
     @Override
-    public String doPost(String url) {
+    public Map<String, Object> doPost(String url) {
         try {
-            String result = "";
+            Map<String, Object> result = new HashMap<>();
             // 获得Http客户端(可以理解为:你得先有一个浏览器;注意:实际上HttpClient与浏览器是不一样的)
             CloseableHttpClient httpClient = HttpClientBuilder.create().build();
             HttpPost httpPost = new HttpPost(url);
             CloseableHttpResponse response = httpClient.execute(httpPost);
-            // 从响应模型中获取响应实体
-            HttpEntity responseEntity = response.getEntity();
-            if (responseEntity != null) {
-                //todo EntityUtils.toString(HttpEntity)方法中操作的是流数据，流数据是一次性数据所以同一个HttpEntity不能使用多次该方法
-                result = EntityUtils.toString(responseEntity);
-                logger.info("响应内容长度为:" + responseEntity.getContentLength());
-                logger.info("响应内容为:" + result);
-            }
+            result = getResult(response);
             return result;
         } catch (Exception e) {
             throw new GlobalException(ExceptionCode.EXCEPTION_INFO.fillArgs("doPost失败，异常信息" + e.getMessage()));
@@ -165,34 +142,71 @@ public class HttpClientUtil implements HttpRequest {
     }
 
     @Override
-    public String doPost(String url, Map<String, String> map) {
+    public Map<String, Object> doPost(String url, Map<String, Object> map) {
         try {
-            String result = "";
+            Map<String, Object> result = new HashMap<>();
             // 获得Http客户端(可以理解为:你得先有一个浏览器;注意:实际上HttpClient与浏览器是不一样的)
             CloseableHttpClient httpClient = HttpClientBuilder.create().build();
             HttpPost httpPost = new HttpPost(url);
-            httpPost.addHeader("Content-Type", "application/json;charset=UTF-8");
-            String jsonStr = JSON.toJSONString(map);
-            if (map != null && map.size() > 0) {
-                //StringEntity strEntity = new StringEntity(URLEncoder.encode(jsonStr, "UTF-8"));
-                StringEntity strEntity = new StringEntity(jsonStr);
-                httpPost.setEntity(strEntity);
+            // 创建参数列表
+            if (map != null) {
+                List<NameValuePair> paramList = new ArrayList<>();
+                for (String key : map.keySet()) {
+                    paramList.add(new BasicNameValuePair(key, String.valueOf(map.get(key))));
+                }
+                // 模拟表单
+                UrlEncodedFormEntity entity = new UrlEncodedFormEntity(paramList);
+                httpPost.setEntity(entity);
             }
             //发送请求
             CloseableHttpResponse response = httpClient.execute(httpPost);
+            result = getResult(response);
+            return result;
+        } catch (Exception e) {
+            throw new GlobalException(ExceptionCode.EXCEPTION_INFO.fillArgs("doPost失败，异常信息" + e.getMessage()));
+        }
+    }
+
+    @Override
+    public Map<String, Object> doPostJson(String url, Map<String, Object> map) {
+        try {
+            Map<String, Object> result = new HashMap<>();
+            // 创建Httpclient对象
+            CloseableHttpClient httpClient = HttpClients.createDefault();
+            CloseableHttpResponse response = null;
+            // 创建Http Post请求
+            HttpPost httpPost = new HttpPost(url);
+            // 创建请求内容
+            String json = JSON.toJSONString(map);
+            StringEntity entity = new StringEntity(json, ContentType.APPLICATION_JSON);
+            httpPost.setEntity(entity);
+            // 执行http请求
+            response = httpClient.execute(httpPost);
+            result = getResult(response);
+            return result;
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new GlobalException(ExceptionCode.EXCEPTION_INFO.fillArgs(e.getMessage()));
+        }
+    }
+
+    public Map<String, Object> getResult(CloseableHttpResponse response) {
+        try {
+            Map<String, Object> result = new HashMap<>();
             // 从响应模型中获取响应实体
             HttpEntity responseEntity = response.getEntity();
             if (responseEntity != null) {
                 //todo EntityUtils.toString(HttpEntity)方法中操作的是流数据，流数据是一次性数据所以同一个HttpEntity不能使用多次该方法
-                result = EntityUtils.toString(responseEntity);
+                String resultStr = EntityUtils.toString(responseEntity);
+                int code = response.getStatusLine().getStatusCode();
                 logger.info("响应内容长度为:" + responseEntity.getContentLength());
-                logger.info("响应内容为:" + result);
+                logger.info("响应内容为:" + resultStr);
+                result.put("code", code);
+                result.put("result", resultStr);
             }
-            //释放资源
-            EntityUtils.consume(responseEntity);
             return result;
         } catch (Exception e) {
-            throw new GlobalException(ExceptionCode.EXCEPTION_INFO.fillArgs("doPost失败，异常信息" + e.getMessage()));
+            throw new GlobalException(ExceptionCode.EXCEPTION_INFO.fillArgs("请求参数解析错误"+e.getMessage()));
         }
     }
 }

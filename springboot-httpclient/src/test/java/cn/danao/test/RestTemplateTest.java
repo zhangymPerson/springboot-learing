@@ -1,11 +1,10 @@
 package cn.danao.test;
 
 import cn.danao.SpringBasicTest;
-import cn.danao.resttemplate.RestTemplateUtil;
+import cn.danao.util.http.resttemplate.RestTemplateUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -35,7 +34,7 @@ public class RestTemplateTest extends SpringBasicTest {
         System.out.println(line);
         String resultOne =restTemplateUtil.doGet(url+"/danao/start/success");
         log.info(resultOne);
-        Map<String,String> params = new HashMap<>();
+        Map<String,Object> params = new HashMap<>();
         params.put("argOne","argOne");
         params.put("argTwo","12");
         String resultTwo = restTemplateUtil.doGet(url+"/danao/start/params",params);

@@ -1,12 +1,16 @@
 package cn.danao.test;
 
 import cn.danao.SpringBasicTest;
-import cn.danao.httpclient.HttpClientUtil;
+import cn.danao.bean.RequestInfoModel;
+import cn.danao.util.RequestUtil;
+import cn.danao.util.RequestUtilImpl;
+import cn.danao.util.http.RequestMethod;
+import cn.danao.util.http.httpclient.HttpClientUtil;
+import com.alibaba.fastjson.JSON;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.annotation.Resource;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -25,6 +29,9 @@ public class HttpClientTest extends SpringBasicTest {
     @Autowired
     HttpClientUtil httpClient;
 
+    @Autowired
+    RequestUtil requsetUtil;
+
     String url = "http://127.0.0.1:8885";
     //String url = "http://39.104.82.22:8888";
 
@@ -32,27 +39,36 @@ public class HttpClientTest extends SpringBasicTest {
 
     @Test
     public void testDoGet(){
-        System.out.println(line);
-        String resultOne = httpClient.doGet(url+"/danao/start/success");
-        log.info(resultOne);
-        Map<String,String> params = new HashMap<>();
+        Map<String,Object>  resultOne = httpClient.doGet(url+"/danao/start/success");
+        log.info("{}",resultOne);
+        Map<String,Object> params = new HashMap<>();
         params.put("argOne","argOne");
         params.put("argTwo","12");
-        String resultTwo = httpClient.doGet(url+"/danao/start/params",params);
-        log.info(resultTwo);
+        Map<String,Object>  resultTwo = httpClient.doGet(url+"/danao/start/params",params);
+        log.info("{}",resultTwo);
     }
 
     @Test
     public void testDoPost(){
-        System.out.println(line);
-        String resultOne = httpClient.doPost(url+"/danao/start/success");
-        log.info(resultOne);
-        Map<String,String> params = new HashMap<>();
+        Map<String,Object> resultOne = httpClient.doPost(url+"/danao/start/success");
+        log.info("{}",resultOne);
+        Map<String,Object> params = new HashMap<>();
         params.put("argOne","argOne");
         params.put("argTwo","12");
-        String resultTwo = httpClient.doPost(url + "/danao/start/params/post/json", params);
-        log.info(resultTwo);
+        Map<String,Object>  resultTwo = httpClient.doPostJson(url + "/danao/start/params/post/json", params);
+        log.info("{}",resultTwo);
 
+    }
+
+    @Test
+    public void testModelSend(){
+        System.out.println(line);
+        RequestInfoModel requestInfoModel = new RequestInfoModel();
+        url = url+"/danao/start/success";
+        requestInfoModel.setUrl(url);
+        requestInfoModel.setMethod(RequestMethod.GET);
+        requsetUtil.sendHttpRequest(requestInfoModel);
+        log.info("[{}]", JSON.toJSONString(requestInfoModel));
     }
 
 }

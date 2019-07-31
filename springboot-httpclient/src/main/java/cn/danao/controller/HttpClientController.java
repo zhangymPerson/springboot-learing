@@ -1,7 +1,6 @@
 package cn.danao.controller;
 
 import cn.danao.conf.UrlInfo;
-import cn.danao.httpclient.HttpClientUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;

@@ -1,16 +1,12 @@
-package cn.danao.resttemplate;
+package cn.danao.util.http.resttemplate;
 
-import cn.danao.conf.UrlInfo;
-import cn.danao.http.HttpRequest;
+import cn.danao.util.http.HttpRequest;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -24,26 +20,24 @@ import java.util.Map;
  */
 @Component
 @Slf4j
-public class RestTemplateUtil implements HttpRequest {
+public class RestTemplateUtil {
 
     private static RestTemplate restTemplate = new RestTemplate();
 
     private static String URL = "http://host:port";
 
 
-    @Override
     public String doGet(String url) {
         return restTemplate.getForObject(url, String.class);
     }
 
-    @Override
-    public String doGet(String url, Map<String, String> map) {
+    public String doGet(String url, Map<String, Object> map) {
         UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(url);
         String reallyUrl = url;
         ResponseEntity responseEntity;
         //如果存在參數
         if (!map.isEmpty()) {
-            for (Map.Entry<String, String> e : map.entrySet()) {
+            for (Map.Entry<String, Object> e : map.entrySet()) {
                 //构建查询参数
                 builder.queryParam(e.getKey(), e.getValue());
             }
@@ -56,17 +50,15 @@ public class RestTemplateUtil implements HttpRequest {
     }
 
     /**
-     * todo 尚未实现 
+     * todo 尚未实现
      * @param url
      * @return
      */
-    @Override
     public String doPost(String url) {
         return null;
     }
 
-    @Override
-    public String doPost(String url, Map<String, String> map) {
+    public String doPost(String url, Map<String, Object> map) {
         return null;
     }
 

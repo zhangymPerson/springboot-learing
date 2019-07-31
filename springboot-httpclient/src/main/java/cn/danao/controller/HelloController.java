@@ -2,15 +2,13 @@ package cn.danao.controller;
 
 import cn.danao.bean.UserInfo;
 import cn.danao.conf.UrlInfo;
-import cn.danao.httpclient.HttpClientUtil;
-import cn.danao.resttemplate.RestTemplateUtil;
+import cn.danao.util.http.httpclient.HttpClientUtil;
+import cn.danao.util.http.resttemplate.RestTemplateUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -43,7 +41,7 @@ public class HelloController {
         if(urls.isEmpty()){
             logger.info("无需发起get请求");
         }else {
-            Map<String,String> params = new HashMap<>();
+            Map<String,Object> params = new HashMap<>();
             params.put("id","1");
             params.put("name","name");
             for(String url:urls){
@@ -52,8 +50,8 @@ public class HelloController {
                 //resultStr = restTemplateUtil.doGet(url);
                 //logger.warn(String.format("测试1的结果:%s  ",resultStr));
                 //todo 测试2
-                resultStr = httpClientUtil.doGet(url,params);
-                logger.warn(String.format("测试2的结果:%s",resultStr));
+                Map<String,Object> resultMap = httpClientUtil.doGet(url,params);
+                logger.warn(String.format("测试2的结果 {}",resultMap));
                 result.put(url,resultStr);
             }
         }
