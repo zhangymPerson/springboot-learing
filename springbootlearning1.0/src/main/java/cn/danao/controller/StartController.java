@@ -39,13 +39,17 @@ public class StartController {
     /**
      * 测试get   请求参数
      * 需要两个参数 params:value 和 num:数字 类型与后台代码一致
-     * @param params
-     * @param num
+     * @param argOne
+     * @param argTwo
      * @return
      */
     @RequestMapping(value = "/params",method = RequestMethod.GET)
-    public String isParams(@RequestParam String params,@RequestParam int num) {
-        log.info("请求的是参数测试接口，请求参数 [ {} {} ]", params,num);
+    public String isParams(@RequestParam String argOne,@RequestParam int argTwo) {
+        log.info("请求的是参数测试接口，请求参数 [ {} {} ]", argOne,argTwo);
+        Map<String, Object> params = new HashMap<>();
+        params.put("status",200);
+        params.put("msg","success");
+        params.put("result","请求参数，argOne = " + argOne + ",argTwo = " +argTwo);
         return JSON.toJSONString(params);
     }
 

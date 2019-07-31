@@ -32,11 +32,11 @@ import java.util.Map;
  * @createdate 2019/5/24 16:28
  * @since 1.0
  */
-@Component
+@Component(value = "httpClient")
 public class HttpClientUtil implements HttpRequest {
 
 
-    private static Logger logger = LoggerFactory.getLogger(HttpClientUtil.class);
+    private Logger logger = LoggerFactory.getLogger(HttpClientUtil.class);
 
     @Override
     public String doGet(String url) {
