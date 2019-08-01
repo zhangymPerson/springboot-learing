@@ -29,6 +29,7 @@ public class StartController {
 
     @Autowired
     public FileServer fileServer;
+
     /**
      * 测试项目是否启动
      *
@@ -94,26 +95,31 @@ public class StartController {
     /**
      * 上传用Post 关键字名 file 数据类型 文件
      * 问题 获取到的文件名不正确
+     *
      * @param fileUpload
      * @return
      */
     @RequestMapping(value = "/commit/file", method = RequestMethod.POST)
-    public String commitFile(@RequestParam("file") MultipartFile fileUpload){
+    public String commitFile(@RequestParam("file") MultipartFile fileUpload) {
         try {
             if (fileUpload != null) {
                 String fileName = fileUpload.getName();
+                String fileNames = fileUpload.getOriginalFilename();
+                log.info(fileName + " : " + fileNames);
                 //默认参数对
                 Map<String, Object> params = new HashMap<String, Object>();
-                params.put("file",fileUpload);
+                params.put("file", fileUpload);
                 fileServer.saveFile(params);
                 //file
                 params.put("file", fileUpload);
                 log.info("+++++++++++++" + fileName + fileUpload.isEmpty());
             }
             return "success";
-        }catch (Exception e){
+        } catch (Exception e) {
             throw new GlobalException(CodeMsg.EXCEPTION_INFO.fillArgs(e.getMessage()));
         }
     }
 
+
+    public 
 }

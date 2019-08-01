@@ -22,6 +22,11 @@ import java.util.Map;
 @Service
 @Slf4j
 public class FileServerImpl implements FileServer {
+    /**
+     * 指定保存文件所在的文件夹
+     */
+    public static String dirPath = "D:/test/";
+
     @Override
     public Map<String, Object> saveFile(Map<String, Object> params) {
         try {
@@ -29,10 +34,9 @@ public class FileServerImpl implements FileServer {
             //file
             MultipartFile file = (MultipartFile) params.get("file");
             if (file != null) {
-                String filePath = "D:/test/";
                 try {
-                    //将图片保存到static文件夹里
-                    file.transferTo(new File(filePath + file.getName()));
+                    //将图片保存到指定的文件夹里
+                    file.transferTo(new File(dirPath + file.getOriginalFilename()));
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
