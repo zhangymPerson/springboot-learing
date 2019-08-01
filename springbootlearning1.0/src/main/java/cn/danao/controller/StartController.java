@@ -1,8 +1,14 @@
 package cn.danao.controller;
 
+import cn.danao.exception.CodeMsg;
+import cn.danao.exception.GlobalException;
+import cn.danao.server.FileServer;
 import com.alibaba.fastjson.JSON;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -21,6 +27,8 @@ import java.util.Map;
 @Slf4j
 public class StartController {
 
+    @Autowired
+    public FileServer fileServer;
     /**
      * 测试项目是否启动
      *
@@ -83,5 +91,29 @@ public class StartController {
         return JSON.toJSONString(params);
     }
 
+    /**
+     * 上传用Post 关键字名 file 数据类型 文件
+     * 问题 获取到的文件名不正确
+     * @param fileUpload
+     * @return
+     */
+    @RequestMapping(value = "/commit/file", method = RequestMethod.POST)
+    public String commitFile(@RequestParam("file") MultipartFile fileUpload){
+        try {
+            if (fileUpload != null) {
+                String fileName = fileUpload.getName();
+                //默认参数对
+                Map<String, Object> params = new HashMap<String, Object>();
+                params.put("file",fileUpload);
+                fileServer.saveFile(params);
+                //file
+                params.put("file", fileUpload);
+                log.info("+++++++++++++" + fileName + fileUpload.isEmpty());
+            }
+            return "success";
+        }catch (Exception e){
+            throw new GlobalException(CodeMsg.EXCEPTION_INFO.fillArgs(e.getMessage()));
+        }
+    }
 
 }

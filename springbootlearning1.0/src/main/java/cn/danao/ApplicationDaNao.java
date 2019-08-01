@@ -14,7 +14,7 @@ import org.springframework.context.annotation.ImportResource;
 public class ApplicationDaNao {
     public static void main(String[] args) {
         SpringApplication.run(ApplicationDaNao.class);
-        String url = "http://127.0.0.1:8080/danao/start/success";
+        String url = "http://127.0.0.1:8885/danao/start/success";
         log.info("项目访问地址: {}",url);
     }
 }

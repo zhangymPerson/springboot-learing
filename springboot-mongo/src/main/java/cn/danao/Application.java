@@ -18,6 +18,9 @@ public class Application {
 
     public static void main(String[] args) {
         SpringApplication.run(Application.class);
+        String url = "http://127.0.0.1:8080";
+        System.out.println("");
     }
+
 
 }
