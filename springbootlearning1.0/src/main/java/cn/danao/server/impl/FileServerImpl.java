@@ -5,9 +5,11 @@ import cn.danao.exception.GlobalException;
 import cn.danao.server.FileServer;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ResourceUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Map;
 
 /**
@@ -25,12 +27,23 @@ public class FileServerImpl implements FileServer {
     /**
      * 指定保存文件所在的文件夹
      */
+    public static String defaultDirPath;
+
+    static {
+        try {
+            defaultDirPath = ResourceUtils.getURL("classpath:").getPath();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
     public static String dirPath = "D:/test/";
 
     @Override
     public Map<String, Object> saveFile(Map<String, Object> params) {
         try {
             log.info("请求保存文件的接口，请求参数[{}]", params);
+            log.info(dirPath + defaultDirPath);
             //file
             MultipartFile file = (MultipartFile) params.get("file");
             if (file != null) {
