@@ -31,6 +31,7 @@ start() {
 if [ $# -eq 1 ]; then
     jarName=$1
     log "启动的jar包是:" ${jarName}
+    stop ${jarName}
     start ${jarName}
     exit 1
 else
