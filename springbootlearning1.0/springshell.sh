@@ -12,13 +12,15 @@ function log() {
 
 # 启动
 start() {
+    log $1 start start
     nohup java -jar $1 &
-    log start success
+    log $1 start success
 }
 
 # 编辑测试代码
 # 输出日志
 if [ $# -eq 1 ]; then
+    jarName=$1
     log "启动的jar包是:" ${jarName}
     start ${jarName}
     exit 1
