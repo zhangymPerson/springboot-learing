@@ -64,3 +64,8 @@ fabric.properties
 .factorypath
 .classpath
 .prefs
+
+# eclipse and vscode
+*.prefs
+*.factorypath
+*.json
