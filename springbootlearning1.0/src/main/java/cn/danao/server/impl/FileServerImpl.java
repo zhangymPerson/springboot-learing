@@ -37,7 +37,8 @@ public class FileServerImpl implements FileServer {
         }
     }
 
-    public static String dirPath = "D:/test/";
+    //public static String dirPath = "D:/test/";
+    public static String dirPath = "";
 
     @Override
     public Map<String, Object> saveFile(Map<String, Object> params) {
