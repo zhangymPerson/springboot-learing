@@ -10,28 +10,16 @@ function log() {
     logs INFO $*
 }
 
-stop() {
-    PID=$(ps -ef | grep $1 | grep -v grep | awk '{ print $2 }')
-    if [ -z "$PID" ]; then
-        log Application is already stopped
-    else
-        log Application stoping... 
-        echo kill $PID
-        kill $PID
-        log Application stop success
-    fi
-}
-
+# 启动
 start() {
-    java -jar $1
+    nohup java -jar $1 &
+    log start success
 }
 
 # 编辑测试代码
 # 输出日志
 if [ $# -eq 1 ]; then
-    jarName=$1
     log "启动的jar包是:" ${jarName}
-    stop ${jarName}
     start ${jarName}
     exit 1
 else
