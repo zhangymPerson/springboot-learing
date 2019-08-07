@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -121,4 +123,29 @@ public class StartController {
     }
 
 
+    @RequestMapping(value = "/download", method = RequestMethod.POST,produces = {"application/json;charset=UTF-8"})
+    public void downloadFile(@RequestBody Map<String, Object> params, HttpServletResponse response) {
+        OutputStream outputStream = null;
+        BufferedInputStream bufferedInputStream = null;
+        try {
+            outputStream = response.getOutputStream();
+            Map<String, Object> map = fileServer.downloadFile(params);
+            //bufferedInputStream
+            System.out.println(map.get("bufferedInputStream"));
+            bufferedInputStream = (BufferedInputStream) map.get("bufferedInputStream");
+            //fileName
+            String fileName = (String) map.get("fileName");
+            //设置Headers
+            response.setHeader("Content-Type", "application/octet-stream");
+            //设置下载的文件的名称-该方式已解决中文乱码问题
+            response.setHeader("Content-Disposition", "attachment;filename=" + new String(fileName.getBytes("gb2312"), "ISO8859-1"));
+            byte[] buffer = new byte[1024];
+            int len = 0;
+            while ((len = bufferedInputStream.read(buffer)) != -1) {
+                outputStream.write(buffer, 0, len);
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
 }

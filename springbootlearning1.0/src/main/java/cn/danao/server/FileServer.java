@@ -21,4 +21,11 @@ public interface FileServer {
      */
     Map<String,Object> saveFile(Map<String, Object> params);
 
+    /**
+     * 文件下载
+     * @param params
+     * @return
+     */
+    Map<String,Object> downloadFile(Map<String, Object> params);
+
 }

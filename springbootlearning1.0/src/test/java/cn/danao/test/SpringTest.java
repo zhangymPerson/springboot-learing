@@ -17,6 +17,10 @@ public class SpringTest extends SpringBootBaseTest {
     @Test
     public void test(){
         System.out.println("测试代码");
+        String fileName= "a.a-b.c.txt";
+        String fileTyle=fileName.substring(fileName.lastIndexOf("."),fileName.length());
+        System.out.println(fileName);
+        System.out.println(fileTyle);
     }
 
 }
