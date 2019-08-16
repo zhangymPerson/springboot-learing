@@ -10,6 +10,7 @@ import org.springframework.util.ResourceUtils;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
@@ -76,7 +77,7 @@ public class FileServerImpl implements FileServer {
             if (StringUtils.isEmpty(fileName)) {
                 throw new GlobalException(CodeMsg.EXCEPTION_INFO.fillArgs("文件名为空"));
             }
-           // log.info("默认文件夹为 {}", dirPath);
+            // log.info("默认文件夹为 {}", dirPath);
             String fileAllName = dirPath + fileName;
             File file = new File(fileAllName);
             if (file == null || !file.exists()) {
@@ -96,5 +97,24 @@ public class FileServerImpl implements FileServer {
             e.printStackTrace();
             throw new GlobalException(CodeMsg.EXCEPTION_INFO.fillArgs(e.getMessage()));
         }
+    }
+
+    @Override
+    public Map<String, Object> testRequest(HttpServletRequest request) {
+        try {
+            InputStream in = request.getInputStream();
+            BufferedReader br = null;
+            //br = request.getReader();
+            StringBuilder sb = new StringBuilder();
+            br = new BufferedReader(new InputStreamReader(in));
+            while (br.readLine() != null) {
+                sb.append(br.readLine());
+            }
+            System.out.println(sb);
+            return null;
+        } catch (Exception e) {
+            throw new GlobalException(CodeMsg.EXCEPTION_INFO.fillArgs(e.getMessage()));
+        }
+
     }
 }

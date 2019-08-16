@@ -1,5 +1,6 @@
 package cn.danao.server;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
 /**
@@ -27,5 +28,13 @@ public interface FileServer {
      * @return
      */
     Map<String,Object> downloadFile(Map<String, Object> params);
+
+
+    /**
+     * 测试request.getRead()
+     * @param request
+     * @return
+     */
+    Map<String,Object> testRequest(HttpServletRequest request);
 
 }

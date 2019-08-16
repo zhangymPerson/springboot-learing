@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.util.HashMap;
@@ -19,7 +20,8 @@ import java.util.Map;
  * @author danao
  * @version 1.0
  * @classname StartController
- * @descriptionclass 1.测试项目启动
+ * @descriptionclass
+ * 1.测试项目启动
  * 2.其他说明
  * @createdate 2019/7/30 17:18
  * @since 1.0
@@ -44,6 +46,12 @@ public class StartController {
         result.put("status", "200");
         result.put("msg", "测试成功");
         return JSON.toJSONString(result);
+    }
+
+    @RequestMapping(value = "/request/test", method = RequestMethod.POST)
+    public String testRequest(HttpServletRequest request){
+        fileServer.testRequest(request);
+        return "success";
     }
 
     /**
