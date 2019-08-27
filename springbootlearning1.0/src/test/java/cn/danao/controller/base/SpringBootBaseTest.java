@@ -46,8 +46,8 @@ import org.springframework.test.context.junit4.SpringRunner;
  * @since 1.0
  */
 //@RunWith(SpringRunner.class)
-@RunWith(JUnit4.class)
-//@RunWith(SpringJUnit4ClassRunner.class)
+//@RunWith(JUnit4.class)
+@RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest
 @Slf4j
 public class SpringBootBaseTest {
