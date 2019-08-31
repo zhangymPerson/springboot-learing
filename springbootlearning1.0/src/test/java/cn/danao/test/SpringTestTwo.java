@@ -4,6 +4,8 @@ import cn.danao.controller.base.SpringBootBaseTest;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
+import java.util.Scanner;
+
 /**
  * @author danao
  * @version 1.0
@@ -17,9 +19,22 @@ import org.junit.Test;
 public class SpringTestTwo extends SpringBootBaseTest {
 
     @Test
-    public void test(){
+    public void test() {
         String testMsg = "测试类2的内容!";
-        log.info("{}",testMsg);
+        log.info("{}", testMsg);
     }
 
+    @Test
+    public void testScanner() {
+        Scanner scanner = new Scanner(System.in);
+        String arg = "";
+        System.out.println("请输入：");
+        if (scanner.hasNext()) {
+            /**
+             * 使用netLine 读到下一行为止 如果使用next 则读到 空格为止
+             */
+            arg = scanner.nextLine();
+        }
+        System.out.println("输入值为:" + arg);
+    }
 }
