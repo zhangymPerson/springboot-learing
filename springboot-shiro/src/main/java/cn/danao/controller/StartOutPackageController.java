@@ -19,8 +19,8 @@ import java.util.Map;
  */
 @Slf4j
 @RestController()
-@RequestMapping(value = "starts")
-public class StartController {
+@RequestMapping(value = "outstart")
+public class StartOutPackageController {
 
 
     /**
@@ -30,7 +30,8 @@ public class StartController {
      */
     @RequestMapping(value = "/success")
     public String isStart() {
-        log.info("测试项目是否启动");
+        log.info("请求的是 {} 测试项目是否启动",this.getClass().getName());
+        log.info("测试非启动类子包下的注解生效 需配置启动类扫描包包含当前包");
         Map<String, Object> result = new HashMap<>();
         result.put("status", "200");
         result.put("msg", "测试成功");

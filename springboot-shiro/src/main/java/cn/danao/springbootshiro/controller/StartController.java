@@ -1,10 +1,12 @@
 package cn.danao.springbootshiro.controller;
 
+import cn.danao.springbootshiro.cong.ConfigTest;
 import com.alibaba.fastjson.JSON;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.security.auth.login.Configuration;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -19,7 +21,7 @@ import java.util.Map;
  */
 @Slf4j
 @RestController()
-@RequestMapping(value = "starts")
+@RequestMapping(value = "start")
 public class StartController {
 
 
@@ -31,6 +33,8 @@ public class StartController {
     @RequestMapping(value = "/success")
     public String isStart() {
         log.info("测试项目是否启动");
+        ConfigTest configTest = new ConfigTest();
+        configTest.test();
         Map<String, Object> result = new HashMap<>();
         result.put("status", "200");
         result.put("msg", "测试成功");
