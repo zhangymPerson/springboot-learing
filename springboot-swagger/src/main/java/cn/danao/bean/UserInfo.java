@@ -1,17 +1,12 @@
 package cn.danao.bean;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 /**
  * @author danao
  * @version 1.0
  * @classname UserInfo
- * @descriptionclass
- * 1.测试实体类
+ * @descriptionclass 1.测试实体类
  * 2.其他说明
  * @createdate 2019/5/24 15:27
  * @since 1.0
@@ -27,7 +22,7 @@ public class UserInfo {
     /**
      * 姓名
      */
-    private String name ;
+    private String name;
 
     /**
      * 年龄

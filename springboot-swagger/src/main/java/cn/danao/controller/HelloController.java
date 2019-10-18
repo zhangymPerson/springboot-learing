@@ -5,15 +5,21 @@ import io.swagger.annotations.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
+import sun.plugin2.message.Message;
 
-@Api("测试")
+import java.util.ArrayList;
+import java.util.List;
+
+@Api(value = "消息",description = "消息操作 API", position = 100, protocols = "http")
+@RequestMapping("/message")
+@ApiOperation(value = "HelloController 请求测试接口",notes = "HelloController 的注释说明")
 @RestController
 public class HelloController {
     Logger logger = LoggerFactory.getLogger(HelloController.class);
 
 
 
-    @ApiOperation("测试接口")
+    @ApiOperation("测试接口 - 注解@ApiOperation")
     @RequestMapping(value = "/test" ,method = RequestMethod.GET)
     public String  test(){
         logger.info("请求路由为:test"  );
@@ -56,6 +62,20 @@ public class HelloController {
     public String sayHello(@RequestParam("id") Integer id){
         logger.info("请求的是/test1" + id );
         return "id:"+id;
+    }
+
+    @ApiOperation(
+            value = "消息列表",
+            notes = "完整的消息内容列表",
+            produces = "application/json, application/xml",
+            consumes = "application/json, application/xml",
+            response = List.class
+    )
+    @GetMapping(value = "messages")
+    private List<UserInfo> list() {
+        List<UserInfo> userInfos = new ArrayList<>();
+        userInfos.add(new UserInfo("zhangsan",10,"男","备注"));
+        return userInfos;
     }
 
 }
