@@ -21,3 +21,26 @@
     */
     @SpringBootApplication(scanBasePackages = {"cn.danao"})
     ```
+
+- springboot配置在不同环境下生效
+
+    ```java
+    @Configuration
+    //只开启dev和test环境中的配置
+    @Profile({"dev","test"})
+    @EnableSwagger2
+    public class SwaggerConfig {
+      //配置代码略去
+    }
+    ```
+
+
+- springboot 不同请求时的配置
+
+    RequestMapping 注解中的说明
+    value:  指定请求的实际地址， 比如 /action/info之类。
+    method：  指定请求的method类型， GET、POST、PUT、DELETE等
+    consumes： 指定处理请求的提交内容类型（Content-Type），例如application/json, text/html;
+    produces:    指定返回的内容类型，仅当request请求头中的(Accept)类型中包含该指定类型才返回
+    params： 指定request中必须包含某些参数值是，才让该方法处理
+    headers： 指定request中必须包含某些指定的header值，才能让该方法处理请求
