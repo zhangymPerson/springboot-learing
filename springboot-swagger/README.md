@@ -155,3 +155,24 @@
                 .build();
     }
     ```
+
+## swagger-bootstrap-ui 的 swagger的美化版本的
+
+> 前提: swagger 提前配置好的，可以请求的
+
+- 添加 jar 包
+
+```xml
+    <dependency>
+        <groupId>com.github.xiaoymin</groupId>
+        <artifactId>knife4j-spring-boot-starter</artifactId>
+        <version>2.0.0</version>
+    </dependency>
+```
+
+- 请求地址
+
+    swagger-bootstrap-ui默认访问地址是：http://${host}:${port}/doc.html
+    
+
+    

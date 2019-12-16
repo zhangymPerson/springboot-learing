@@ -2,10 +2,12 @@ package cn.danao;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 /**
- * 开启swagger
+ * 开启swagger注解
+ * //@EnableSwagger2
+ *
+ * @author danao
  */
 @SpringBootApplication
 public class ApplicationDaNao {
