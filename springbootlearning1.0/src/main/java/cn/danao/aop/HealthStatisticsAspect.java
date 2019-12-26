@@ -38,7 +38,7 @@ import javax.servlet.http.HttpServletRequest;
 @Aspect
 @Component
 @Slf4j
-public class HealthStatistics {
+public class HealthStatisticsAspect {
 
     @Pointcut("execution(public * cn.danao.controller.*.*(..))")
     public void pointMent() {
