@@ -4,27 +4,29 @@ import cn.danao.aop.RunTime;
 import cn.danao.exception.CodeMsg;
 import cn.danao.exception.GlobalException;
 import cn.danao.server.FileServer;
+import cn.danao.server.HelloServer;
 import com.alibaba.fastjson.JSON;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.*;
+import java.io.BufferedInputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.HashMap;
 import java.util.Map;
 
 /**
+ * create date 2019/7/30 17:18
+ * <p>
+ * description class
+ * 1.测试项目启动
+ *
  * @author danao
  * @version 1.0
- * @classname StartController
- * @descriptionclass
- * 1.测试项目启动
- * 2.其他说明
- * @createdate 2019/7/30 17:18
  * @since 1.0
  */
 @RestController
@@ -32,8 +34,15 @@ import java.util.Map;
 @Slf4j
 public class StartController {
 
+
+    private FileServer fileServer;
+    private HelloServer helloServer;
+
     @Autowired
-    public FileServer fileServer;
+    public StartController(FileServer fileServer, HelloServer helloServer) {
+        this.fileServer = fileServer;
+        this.helloServer = helloServer;
+    }
 
     /**
      * 测试项目是否启动
@@ -44,6 +53,8 @@ public class StartController {
     @RequestMapping(value = "/success")
     public String isStart() {
         log.info("测试项目是否启动");
+        helloServer.getServerStr();
+        helloServer.getServerStr("a");
         Map<String, Object> result = new HashMap<>();
         result.put("status", "200");
         result.put("msg", "测试成功");
@@ -51,7 +62,7 @@ public class StartController {
     }
 
     @RequestMapping(value = "/request/test", method = RequestMethod.POST)
-    public String testRequest(HttpServletRequest request){
+    public String testRequest(HttpServletRequest request) {
         fileServer.testRequest(request);
         return "success";
     }
@@ -133,7 +144,7 @@ public class StartController {
     }
 
 
-    @RequestMapping(value = "/download", method = RequestMethod.POST,produces = {"application/json;charset=UTF-8"})
+    @RequestMapping(value = "/download", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
     public void downloadFile(@RequestBody Map<String, Object> params, HttpServletResponse response) {
         OutputStream outputStream = null;
         BufferedInputStream bufferedInputStream = null;

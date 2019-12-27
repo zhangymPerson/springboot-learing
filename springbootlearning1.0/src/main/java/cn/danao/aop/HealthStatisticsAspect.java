@@ -52,7 +52,7 @@ public class HealthStatisticsAspect {
 
     @After(value = "pointMent()")
     public void afterMethod() {
-        log.info("切面执行前切入");
+        log.info("切面执行后切入");
     }
 
     /**

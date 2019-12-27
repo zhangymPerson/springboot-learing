@@ -4,7 +4,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.stereotype.Component;
+
+import java.lang.reflect.Method;
 
 /**
  * date 2019/12/27 11:27 <br/>
@@ -22,14 +25,17 @@ public class RunTimeAspect {
 
     /**
      * 测试注解切面
+     * 切入接口时，只能切入接口中定义的方法，接口未定义的方法未切入
      *
      * @param joinPoint 切入方法
      */
     @Before("@annotation(cn.danao.aop.RunTime)")
-    public void logAnnotation(final JoinPoint joinPoint) {
+    public void aspectAnnotation(final JoinPoint joinPoint) {
         try {
             log.info("--------------------------注解成功--------------------");
             log.info("joinPoint [{}]", joinPoint);
+            RunTime runTime = getDeclaredAnnotation(joinPoint);
+            log.info("runTime={}", runTime.desc());
             log.info("--------------------------注解成功--------------------");
         } catch (Exception e) {
             log.error("测试注解切面异常[{}]", e);
@@ -37,4 +43,25 @@ public class RunTimeAspect {
         }
     }
 
+
+    /**
+     * 获取方法中声明的注解
+     *
+     * @param joinPoint 切入点
+     * @return 自定义注解
+     * @throws NoSuchMethodException 异常
+     */
+    private RunTime getDeclaredAnnotation(JoinPoint joinPoint) throws NoSuchMethodException {
+        // 获取方法名
+        String methodName = joinPoint.getSignature().getName();
+        // 反射获取目标类
+        Class<?> targetClass = joinPoint.getTarget().getClass();
+        // 拿到方法对应的参数类型
+        Class<?>[] parameterTypes = ((MethodSignature) joinPoint.getSignature()).getParameterTypes();
+        // 根据类、方法、参数类型（重载）获取到方法的具体信息
+        Method objMethod = targetClass.getMethod(methodName, parameterTypes);
+        // 拿到方法定义的注解信息
+        // 返回
+        return objMethod.getDeclaredAnnotation(RunTime.class);
+    }
 }
