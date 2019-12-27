@@ -1,5 +1,6 @@
 package cn.danao.controller;
 
+import cn.danao.aop.RunTime;
 import cn.danao.exception.CodeMsg;
 import cn.danao.exception.GlobalException;
 import cn.danao.server.FileServer;
@@ -39,6 +40,7 @@ public class StartController {
      *
      * @return
      */
+    @RunTime
     @RequestMapping(value = "/success")
     public String isStart() {
         log.info("测试项目是否启动");
