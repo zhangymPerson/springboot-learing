@@ -9,7 +9,6 @@ import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import javax.servlet.Filter;
 import javax.sql.DataSource;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -17,12 +16,12 @@ import java.util.Map;
 
 
 /**
+ * create date 2019/10/14 18:52
+ * description class 1.配置数据库连接池 druid
+ * 2.其他说明
+ *
  * @author danao
  * @version 1.0
- * @classname DruidConfig
- * @descriptionclass 1.类的作用
- * 2.其他说明
- * @createdate 2019/10/14 18:52
  * @since 1.0
  */
 @Configuration
@@ -48,7 +47,7 @@ public class DruidConfig {
 
     @Bean
     public FilterRegistrationBean druidWebStatFilter() {
-        FilterRegistrationBean filterRegistrationBean = new FilterRegistrationBean( new WebStatFilter());
+        FilterRegistrationBean filterRegistrationBean = new FilterRegistrationBean(new WebStatFilter());
         Map<String, String> initParams = new HashMap<>();
         initParams.put("exclusions", "*.js,*.css,/druid/*");
         filterRegistrationBean.setInitParameters(initParams);

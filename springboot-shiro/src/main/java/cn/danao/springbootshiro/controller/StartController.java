@@ -6,17 +6,15 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.security.auth.login.Configuration;
 import java.util.HashMap;
 import java.util.Map;
 
 /**
+ * create date 2019/10/12 16:57
+ * description class 1.类的作用
+ *
  * @author danao
  * @version 1.0
- * @classname HelloController
- * @descriptionclass 1.类的作用
- * 2.其他说明
- * @createdate 2019/10/12 16:57
  * @since 1.0
  */
 @Slf4j

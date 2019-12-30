@@ -9,12 +9,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
+ * create date 2019/10/12 16:57
+ * description class 1.测试请求类
+ * 当controller 不在 启动类的目录下的子包时，需要在启动类中添加注解
+ *
  * @author danao
  * @version 1.0
- * @classname HelloController
- * @descriptionclass 1.类的作用
- * 2.其他说明
- * @createdate 2019/10/12 16:57
  * @since 1.0
  */
 @Slf4j
@@ -30,7 +30,7 @@ public class StartOutPackageController {
      */
     @RequestMapping(value = "/success")
     public String isStart() {
-        log.info("请求的是 {} 测试项目是否启动",this.getClass().getName());
+        log.info("请求的是 {} 测试项目是否启动", this.getClass().getName());
         log.info("测试非启动类子包下的注解生效 需配置启动类扫描包包含当前包");
         Map<String, Object> result = new HashMap<>();
         result.put("status", "200");
