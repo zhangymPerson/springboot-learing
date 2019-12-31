@@ -1,4 +1,4 @@
-package cn.danao.springbootshiro.cong;
+package cn.danao.springbootshiro.config;
 
 import com.alibaba.druid.pool.DruidDataSource;
 import com.alibaba.druid.support.http.StatViewServlet;

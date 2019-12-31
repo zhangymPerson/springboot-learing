@@ -1,6 +1,6 @@
 package cn.danao.springbootshiro.controller;
 
-import cn.danao.springbootshiro.cong.ConfigTest;
+import cn.danao.springbootshiro.config.ConfigTest;
 import com.alibaba.fastjson.JSON;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
@@ -54,7 +54,7 @@ public class StartController {
      */
     @RequestMapping(value = "/params", method = RequestMethod.GET)
     public String isParams(@RequestParam String argOne, @RequestParam int argTwo) {
-        log.info("请求的是参数测试接口，请求参数 [ {} {} ]", argOne, argTwo);
+        log.info("请求的是GET参数测试接口，请求参数 [ {} {} ]", argOne, argTwo);
         Map<String, Object> params = new HashMap<>();
         params.put("status", 200);
         params.put("msg", "success");
@@ -85,7 +85,7 @@ public class StartController {
      */
     @RequestMapping(value = "/params/post", method = RequestMethod.POST)
     public String isParamsPost(@RequestParam String argOne, @RequestParam String argTwo) {
-        log.info("请求的是参数测试接口，请求参数 [{} {}]", argOne, argTwo);
+        log.info("请求的是POST参数测试接口，请求参数 [{} {}]", argOne, argTwo);
         Map<String, Object> params = new HashMap<>();
         params.put("status", "200");
         params.put("msg", "测试成功" + "参数" + argOne + "," + argTwo);
