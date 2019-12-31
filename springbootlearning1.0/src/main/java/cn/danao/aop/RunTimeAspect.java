@@ -2,10 +2,13 @@ package cn.danao.aop;
 
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StopWatch;
 
 import java.lang.reflect.Method;
 
@@ -63,5 +66,23 @@ public class RunTimeAspect {
         // 拿到方法定义的注解信息
         // 返回
         return objMethod.getDeclaredAnnotation(RunTime.class);
+    }
+
+    /**
+     * 统计Service中方法调用的时间
+     *
+     * @param joinPoint
+     * @throws Throwable
+     */
+    @Around("@annotation(cn.danao.aop.RunTime)")
+    public Object logServiceMethodAccess(ProceedingJoinPoint joinPoint) throws Throwable {
+        RunTime runTime = getDeclaredAnnotation(joinPoint);
+        StopWatch stopWatch = new StopWatch(runTime.desc());
+        stopWatch.start();
+        Object object = joinPoint.proceed();
+        stopWatch.stop();
+        String tmp = joinPoint.getSignature().toString();
+        log.info("{},\n{}", tmp, stopWatch.prettyPrint());
+        return object;
     }
 }
