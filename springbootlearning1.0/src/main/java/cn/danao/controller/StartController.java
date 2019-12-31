@@ -3,6 +3,7 @@ package cn.danao.controller;
 import cn.danao.aop.RunTime;
 import cn.danao.exception.CodeMsg;
 import cn.danao.exception.GlobalException;
+import cn.danao.server.AopTestServer;
 import cn.danao.server.FileServer;
 import cn.danao.server.HelloServer;
 import com.alibaba.fastjson.JSON;
@@ -38,10 +39,14 @@ public class StartController {
     private FileServer fileServer;
     private HelloServer helloServer;
 
+
+    private AopTestServer aopTestServer;
+
     @Autowired
-    public StartController(FileServer fileServer, HelloServer helloServer) {
+    public StartController(FileServer fileServer, HelloServer helloServer, AopTestServer aopTestServer) {
         this.fileServer = fileServer;
         this.helloServer = helloServer;
+        this.aopTestServer = aopTestServer;
     }
 
     /**
@@ -55,6 +60,23 @@ public class StartController {
         log.info("测试项目是否启动");
         helloServer.getServerStr();
         helloServer.getServerStr("a");
+        Map<String, Object> result = new HashMap<>();
+        result.put("status", "200");
+        result.put("msg", "测试成功");
+        return JSON.toJSONString(result);
+    }
+
+
+    /**
+     * 测试切面服务的方法
+     *
+     * @return
+     */
+    @RunTime
+    @RequestMapping(value = "/aop")
+    public String aopTest() {
+        log.info("测试切面执行过程");
+        aopTestServer.aop();
         Map<String, Object> result = new HashMap<>();
         result.put("status", "200");
         result.put("msg", "测试成功");
