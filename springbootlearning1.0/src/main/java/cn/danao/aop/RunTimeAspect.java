@@ -71,8 +71,8 @@ public class RunTimeAspect {
     /**
      * 统计Service中方法调用的时间
      *
-     * @param joinPoint
-     * @throws Throwable
+     * @param joinPoint 切入点
+     * @throws Throwable 异常
      */
     @Around("@annotation(cn.danao.aop.RunTime)")
     public Object logServiceMethodAccess(ProceedingJoinPoint joinPoint) throws Throwable {
