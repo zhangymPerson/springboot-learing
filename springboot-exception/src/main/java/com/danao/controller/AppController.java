@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * date 2020/1/2 16:02 <br/>
  * descriptionclass <br/>
+ * 所有请求优先匹配存在的路由，不存在的路由都会在这里处理
  *
  * @author danao
  * @version 1.0
@@ -25,7 +26,7 @@ public class AppController {
      */
     @GetMapping
     public ResultCode testGet() {
-        return ResultCode.SUCCESS;
+        return ResultCode.getResult("@GetMapping注解返回，所有不存在路径的GET都会返回");
     }
 
     /**
@@ -36,11 +37,11 @@ public class AppController {
      */
     @PostMapping
     public ResultCode testPost() {
-        return ResultCode.SUCCESS;
+        return ResultCode.getResult("@PostMapping注解返回，所有不存在路径的Post都会返回");
     }
 
     @RequestMapping
     public ResultCode testRequest() {
-        return ResultCode.FAIL;
+        return ResultCode.getResult("@RequestMapping注解返回，所有不存在路径都会返回");
     }
 }

@@ -35,6 +35,6 @@ public class SelfErrorController implements ErrorController {
      */
     @RequestMapping(value = "/error")
     public ResultCode error() {
-        return ResultCode.FAIL;
+        return ResultCode.getResult("自定义错误返回页内容");
     }
 }
