@@ -22,4 +22,11 @@ public interface TokenServer {
      * @return 生成简单token测试
      */
     String getUserToken(User user);
+
+    /**
+     * 校验token
+     *
+     * @param token token
+     */
+    void checkToken(String token);
 }

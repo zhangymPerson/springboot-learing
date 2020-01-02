@@ -32,9 +32,15 @@ public class TokenController {
     @RequestMapping(value = "/user/{username}/{password}", method = RequestMethod.GET)
     public String getUserToken(@PathVariable("username") String username, @PathVariable("password") String password) {
         log.info("获取token的用户信息 username {} password {} ", username, password);
-        User user = new User("1",username, password);
+        User user = new User("1", username, password);
         return tokenServer.getUserToken(user);
     }
 
+    @RequestMapping(value = "/check", method = RequestMethod.GET)
+    public String getUserToken(String token) {
+        log.info("获取token的用户信息 token {} ", token);
+        tokenServer.checkToken(token);
+        return "success";
+    }
 
 }
