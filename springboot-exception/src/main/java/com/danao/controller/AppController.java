@@ -40,6 +40,13 @@ public class AppController {
         return ResultCode.getResult("@PostMapping注解返回，所有不存在路径的Post都会返回");
     }
 
+    /**
+     * 这种会造成swagger-ui.html页面请求不到的问题
+     * <p>
+     * 这种处理优先 SelfErrorController类处理 所有匹配不到的请求都会走这里
+     *
+     * @return 错误处理结果
+     */
     @RequestMapping
     public ResultCode testRequest() {
         return ResultCode.getResult("@RequestMapping注解返回，所有不存在路径都会返回");
