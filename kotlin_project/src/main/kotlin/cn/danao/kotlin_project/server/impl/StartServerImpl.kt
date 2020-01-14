@@ -4,8 +4,8 @@ import cn.danao.kotlin_project.server.StartServer
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Service
 
-@Service
-class StartServerImpl :StartServer{
+@Service(value = "startServer")
+class StartServerImpl : StartServer {
     var log = LoggerFactory.getLogger(this.javaClass);
     override fun getSum(a: Int, b: Int, c: String): String {
         /**
@@ -16,7 +16,7 @@ class StartServerImpl :StartServer{
          */
 //        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
         log.info("请求服务参数是 a = ${a}, b =  ${b},c = ${c}")
-        return (a+b).toString()
+        return (a + b).toString()
     }
 
     override fun interfaceTest(): String {
