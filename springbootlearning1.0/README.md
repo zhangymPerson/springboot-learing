@@ -69,3 +69,34 @@
 - aop 切面
 
     
+  
+- 自定义载入内容
+
+    在项目的resource目录中添加 名为 “banner.txt” 的文本文件 即可自定义springboot的启动文件
+
+    该文件中的内容可以读取配置显示 如 Port: ${server.port} 会读取配置文件中的内容或者监听器中set进去的内容
+
+- springboot项目创建监听器
+
+    编写类 实现 org.springframework.boot.SpringApplicationRunListener 接口
+
+    **编写实现类必须要创建构造方法 无构造方法则无法正确加载该监听器**
+
+    ```java
+       public StartingSpringApplicationRunListener(SpringApplication application, String... args) {
+            log.debug("监听器正在初始化...");
+        }
+    ```
+
+    
+
+    在配置文件夹 resource 目录下 添加新文件夹 META-INF 创建文件 spring.factories 
+
+    配置自定义类
+
+    ```properties
+    org.springframework.boot.SpringApplicationRunListener=\
+    cn.danao.listener.StartingSpringApplicationRunListener
+    ```
+
+    
