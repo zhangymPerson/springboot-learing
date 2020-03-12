@@ -1,11 +1,11 @@
-package cn.danao.kotlin_project
+package cn.danao.springboot.springbootkotlin
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 @SpringBootApplication
-class KotlinProjectApplication
+class SpringbootKotlinApplication
 
 fun main(args: Array<String>) {
-	runApplication<KotlinProjectApplication>(*args)
+	runApplication<SpringbootKotlinApplication>(*args)
 }

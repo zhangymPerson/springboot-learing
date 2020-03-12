@@ -1,10 +1,10 @@
-package cn.danao.kotlin_project
+package cn.danao.springboot.springbootkotlin
 
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest
 
 @SpringBootTest
-class KotlinProjectApplicationTests {
+class SpringbootKotlinApplicationTests {
 
 	@Test
 	fun contextLoads() {
