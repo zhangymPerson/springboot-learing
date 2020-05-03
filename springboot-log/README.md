@@ -26,7 +26,8 @@
 
     cn.danao.aop.GlobalExceptionHandler
     
+- 测试nacos配置
+
+    参考项目 - https://github.com/nacos-group/nacos-examples
  
-    
-    
     
