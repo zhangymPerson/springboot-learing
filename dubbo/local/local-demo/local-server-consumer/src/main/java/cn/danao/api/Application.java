@@ -1,7 +1,6 @@
 package cn.danao.api;
 
 import cn.danao.api.server.HelloService;
-import cn.danao.api.server.HelloUseService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -20,8 +19,8 @@ public class Application {
         log.info("远程调用客户端启动");
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(xmlFile);
         context.start();
-        HelloUseService service = context.getBean(HelloUseService.class); // 获取远程服务代理
-        String hello = service.sayWord("汉字测试"); // 执行远程方法
-        System.out.println( hello );
+        HelloService service = context.getBean(HelloService.class); // 获取远程服务代理
+        String hello = service.sayHello("汉字测试"); // 执行远程方法
+        System.out.println(hello);
     }
 }
