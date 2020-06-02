@@ -28,6 +28,9 @@ public class UserServerImpl implements UserServer {
     @Override
     public User getUser() {
         List<User> userList = new ArrayList<>();
+        //drools测试的位置，方便进行测试开发
+        //测试请求的地址
+        // todo http://localhost:8080/danao/drools/test
         testOne();
         test();
         excel();
