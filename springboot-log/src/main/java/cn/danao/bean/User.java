@@ -1,6 +1,9 @@
 package cn.danao.bean;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 /**
  * date 2020/6/1 14:26 <br/>
@@ -11,6 +14,9 @@ import lombok.Data;
  * @since 1.0
  */
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
 public class User {
     /**
      * 编号
