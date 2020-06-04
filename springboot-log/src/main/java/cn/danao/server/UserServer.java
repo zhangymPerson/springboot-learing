@@ -17,4 +17,11 @@ public interface UserServer {
      * @return
      */
     User getUser();
+
+
+    /**
+     * 测试拼写
+     */
+    void stringInfo();
+
 }

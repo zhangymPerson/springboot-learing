@@ -3,9 +3,12 @@ package cn.danao.server.impl;
 import cn.danao.bean.RuleType;
 import cn.danao.bean.User;
 import cn.danao.bean.WordObj;
+import cn.danao.bean.strinfo.A;
 import cn.danao.server.UserServer;
+import cn.danao.util.KieSessionExecUtil;
 import cn.danao.util.KieSessionUtils;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.kie.api.runtime.KieSession;
 import org.springframework.stereotype.Service;
 
@@ -38,6 +41,36 @@ public class UserServerImpl implements UserServer {
         return null;
     }
 
+    @Override
+    public void stringInfo() {
+        //测试规则拼写相关内容
+        strTest();
+    }
+
+    /**
+     * map结构内容拼写
+     */
+    public void strTest() {
+        try {
+            KieSession kieSession = KieSessionExecUtil.ALL_RULES_EXCEL_KIESESSION.get("strInfo");
+            log.info("strInfo = {}", kieSession);
+            List<A> as = new ArrayList<>();
+            for (int i = 0; i < 3; i++) {
+                as.add(new A(i));
+            }
+            kieSession.insert(as);
+            A a = as.get(0);
+            StringUtils.isNotBlank(a.getName());
+        } catch (Exception e) {
+            log.error("测试拼写出错");
+            e.printStackTrace();
+        }
+    }
+
+
+    // ===============================================================================================================
+    // 历史测试========================================================================================================
+    // ===============================================================================================================
 
     /**
      * 测试简单的手写

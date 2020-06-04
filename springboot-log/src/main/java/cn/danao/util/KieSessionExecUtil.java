@@ -38,7 +38,11 @@ public class KieSessionExecUtil {
         //文件名和规则key一致
         //规则名需要和文件内部的规则组名字一致
         KieSession mapKieSession = initKieSession("rules/map.xls");
+        //拼写测试
+        StringBuffer strInfo = new StringBuffer();
+        KieSession strInfoKieSession = initKieSession("rules/strInfo.xls");
         ALL_RULES_EXCEL_KIESESSION.put("map", mapKieSession);
+        ALL_RULES_EXCEL_KIESESSION.put("strInfo", strInfoKieSession);
         log.info("初始化规则文件完成，共[{}]个文件", ALL_RULES_EXCEL_KIESESSION.size());
     }
 
@@ -59,7 +63,7 @@ public class KieSessionExecUtil {
             //规则执行
             KieSession kieSession = null;
             kieSession = KieSessionUtils.createKieSessionFromDRL(excelToDrl);
-            log.debug("\n规则文件是file={},\n规则内容是str={}", file.getName(), inputStream);
+            log.info("\n规则文件是file={},\n规则内容是str={}", file.getName(), excelToDrl);
             return kieSession;
         } catch (Exception e) {
             log.error("初始化规则文件失败,异常信息:", e);

@@ -24,7 +24,8 @@ public class UserController {
     private UserServer userServer;
 
     /**
-     * 测试
+     * 测试 drools规则是否启动生效
+     * 和 drools使用excel配置的效果
      *
      * @return
      */
@@ -32,6 +33,19 @@ public class UserController {
     public String test() {
         log.info("test");
         userServer.getUser();
+        return "ok";
+    }
+
+
+    /**
+     * 测试 drools 使用配置加map实现拼写功能
+     *
+     * @return
+     */
+    @RequestMapping(value = "/testInfo")
+    public String test1() {
+        log.info("test");
+        userServer.stringInfo();
         return "ok";
     }
 
