@@ -24,9 +24,11 @@ public class A {
 
     private int id;
 
+    private String nil;
+
     private String name;
 
-    private List<String> stringList;
+    private List<String> list;
 
     private B b;
 
@@ -40,7 +42,7 @@ public class A {
         for (int i = 0; i < id; i++) {
             strings.add(String.valueOf(i));
         }
-        this.stringList = strings;
+        this.list = strings;
         Map<String, String> stringMap = new HashMap<>();
         stringMap.put("id", String.valueOf(id));
         this.map = stringMap;
