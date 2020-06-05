@@ -1,6 +1,5 @@
 package cn.danao.test;
 
-import cn.danao.annotation.LogNote;
 import cn.danao.annotation.TestNote;
 import cn.danao.test.base.SpringTest;
 import org.junit.Test;
@@ -19,13 +18,13 @@ import java.lang.reflect.Method;
 public class AnnotationTest extends SpringTest {
 
     @TestNote(test = "我猜你找不到我")
-    public void testAnntation(){
+    public void testAnntation() {
         System.out.println("测试注解");
     }
 
 
     @Test
-    public void test(){
+    public void test() {
         System.out.println("test");
         try {
             /**
@@ -33,8 +32,8 @@ public class AnnotationTest extends SpringTest {
              */
             Class cc = Class.forName("cn.danao.test.AnnotationTest");
             Method[] methods = cc.getMethods();
-            for(Method method:methods){
-                if(method.isAnnotationPresent(TestNote.class)){
+            for (Method method : methods) {
+                if (method.isAnnotationPresent(TestNote.class)) {
                     TestNote testNote = method.getAnnotation(TestNote.class);
                     System.out.println(testNote.test());
                 }

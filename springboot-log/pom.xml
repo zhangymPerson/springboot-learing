@@ -13,6 +13,7 @@
         <redis.version>2.9.0</redis.version>
         <fastjson.version>1.2.47</fastjson.version>
         <drools.version>7.36.0.Final</drools.version>
+        <aviator.version>5.0.1</aviator.version>
     </properties>
 
     <parent>
@@ -107,6 +108,19 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-logging</artifactId>
+        </dependency>
+
+        <!--轻量级规则引擎的测试代码-->
+        <dependency>
+            <groupId>com.googlecode.aviator</groupId>
+            <artifactId>aviator</artifactId>
+            <version>${aviator.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>RELEASE</version>
+            <scope>compile</scope>
         </dependency>
     </dependencies>
 
