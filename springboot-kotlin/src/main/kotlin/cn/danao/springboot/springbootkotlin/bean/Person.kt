@@ -29,6 +29,6 @@ fun main() {
     println(p1)
     //属性都设置了默认值时，可以使用无参构造
     var pd = PersonDefault()
-    println("${pd.lastName}${pd.firstName}")
+    println("${pd?.lastName}${pd.firstName}")
     print("test")
 }
