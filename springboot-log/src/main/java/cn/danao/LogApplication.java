@@ -6,12 +6,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 
 /**
+ * create date 2019/3/20
+ *
  * @author zhang
  * @version 1.0
- * @classname LogApplication
- * @descriptionclass 1.启动类主类
- * 2.****************
- * @createdate 2019/3/20
  * @since 1.0
  */
 @ServletComponentScan(basePackages = "cn.danao")
