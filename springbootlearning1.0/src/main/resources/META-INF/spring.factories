@@ -8,5 +8,4 @@
 
 # SpringApplicationRunListener
 org.springframework.boot.SpringApplicationRunListener=\
-cn.danao.listener.StartingSpringApplicationRunListener,\
-cn.danao.listener.LoggingSpringApplicationRunListener
+cn.danao.listener.StartingSpringApplicationRunListener
