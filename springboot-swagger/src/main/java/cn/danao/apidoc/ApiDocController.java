@@ -1,5 +1,6 @@
 package cn.danao.apidoc;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -8,11 +9,13 @@ import org.springframework.web.bind.annotation.RestController;
  * description class <br/>
  * apidoc 工具的注释测试
  * 版本 1.0.0
+ *
  * @author danao
  * @version 1.0
  * @since 1.0
  */
 @RestController
+@Slf4j
 public class ApiDocController {
 
 
@@ -43,9 +46,8 @@ public class ApiDocController {
      */
 
 
-
     /**
-     * @api {get} api 接口说明  接口作用描述内容
+     * @api {get} api01 接口说明  接口作用描述内容
      * @apiName api名字 获取api
      * @apiGroup groupName
      * @apiParam {string} req1 请求值
@@ -58,14 +60,15 @@ public class ApiDocController {
      * @apiUse exception
      * @apiUse MyError
      */
-    @RequestMapping(value = "/api")
+    @RequestMapping(value = "/api01")
     public String apiDoc() {
+        log.info("请求路由是api01");
         return "success";
     }
 
 
     /**
-     * @api {get} api1 接口说明  接口作用描述内容
+     * @api {get} api11 接口说明  接口作用描述内容
      * @apiName api名字 获取api
      * @apiGroup groupName1
      * @apiParam {string} req1 请求值
@@ -76,13 +79,14 @@ public class ApiDocController {
      * }
      * @apiVersion 1.0.0
      */
-    @RequestMapping(value = "/api")
+    @RequestMapping(value = "/api11")
     public String apiDoc1() {
+        log.info("请求路由是api11");
         return "success";
     }
 
     /**
-     * @api {post} api2 接口说明  接口作用描述内容
+     * @api {post} api21 接口说明  接口作用描述内容
      * @apiName api名字 获取api
      * @apiGroup groupName2
      * @apiParam {string} req1 请求值
@@ -93,8 +97,9 @@ public class ApiDocController {
      * }
      * @apiVersion 1.0.0
      */
-    @RequestMapping(value = "/api")
+    @RequestMapping(value = "/api21")
     public String apiDoc2() {
+        log.info("请求路由是api21");
         return "success";
     }
 

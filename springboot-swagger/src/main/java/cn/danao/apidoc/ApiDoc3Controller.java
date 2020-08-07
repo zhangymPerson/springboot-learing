@@ -1,5 +1,6 @@
 package cn.danao.apidoc;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -8,11 +9,13 @@ import org.springframework.web.bind.annotation.RestController;
  * description class <br/>
  * apidoc 工具的注释测试
  * 版本 3.0.0
+ *
  * @author danao
  * @version 1.0
  * @since 1.0
  */
 @RestController
+@Slf4j
 public class ApiDoc3Controller {
 
 
@@ -43,9 +46,8 @@ public class ApiDoc3Controller {
      */
 
 
-
     /**
-     * @api {put} api 接口说明  接口作用描述内容
+     * @api {put} api03 接口说明  接口作用描述内容
      * @apiName api名字 获取api
      * @apiGroup groupName
      * @apiParam {string} req1 请求值
@@ -54,8 +56,9 @@ public class ApiDoc3Controller {
      * @apiUse exception
      * @apiUse MyError
      */
-    @RequestMapping(value = "/api")
+    @RequestMapping(value = "/api03")
     public String apiDoc() {
+        log.info("请求路由是api03");
         return "success";
     }
 
@@ -71,8 +74,9 @@ public class ApiDoc3Controller {
      * }
      * @apiVersion 3.0.0
      */
-    @RequestMapping(value = "/api")
+    @RequestMapping(value = "/api13")
     public String apiDoc1() {
+        log.info("请求路由是api13");
         return "success";
     }
 
@@ -87,8 +91,9 @@ public class ApiDoc3Controller {
      * }
      * @apiVersion 3.0.0
      */
-    @RequestMapping(value = "/api")
+    @RequestMapping(value = "/api23")
     public String apiDoc2() {
+        log.info("请求路由是api23");
         return "success";
     }
 
