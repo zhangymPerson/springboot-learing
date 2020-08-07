@@ -176,3 +176,17 @@
 - 请求地址
 
   swagger-bootstrap-ui 默认访问地址是：http://${host}:${port}/doc.html
+
+# apidoc在项目中的使用
+
+- apidoc使用
+
+    [个人笔记网址](https://github.com/zhangymPerson/learning-notes/tree/master/programming-language/JavaScript/apidoc)
+    
+- 使用步骤
+
+    1.创建apidoc的json配置文件 在项目名下，和 src 目录同一目录下
+    
+    2.在src/目录的代码中 按照apidoc规则定义好相关的注释
+    
+    3.在项目目录上执行 `apidoc -i src/ -o out/` 即可将apidoc生成的接口项目返回给前端
