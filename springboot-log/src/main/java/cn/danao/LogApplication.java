@@ -1,5 +1,6 @@
 package cn.danao;
 
+import com.alibaba.nacos.spring.context.annotation.config.NacosPropertySource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -10,11 +11,21 @@ import org.springframework.boot.web.servlet.ServletComponentScan;
  *
  * @author zhang
  * @version 1.0
+ * @classname LogApplication
+ * @descriptionclass * Nacos 控制台添加配置：
+ * * <p>
+ * * Data ID：example
+ * * <p>
+ * * Group：DEFAULT_GROUP
+ * * <p>
+ * * 配置内容：useLocalCache=true
+ * @createdate 2019/3/20
  * @since 1.0
  */
 @ServletComponentScan(basePackages = "cn.danao")
 @SpringBootApplication
 @Slf4j
+@NacosPropertySource(dataId = "example", autoRefreshed = true)
 public class LogApplication {
     public static void main(String[] args) {
         SpringApplication.run(LogApplication.class);
