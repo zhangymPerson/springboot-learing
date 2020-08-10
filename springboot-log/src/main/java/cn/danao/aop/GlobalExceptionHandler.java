@@ -6,9 +6,13 @@ import cn.danao.exception.ErrorInfoInterface;
 import cn.danao.exception.GlobalErrorInfoException;
 import cn.danao.exception.ResultBody;
 import cn.danao.util.ResponseUtils;
+import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.validation.BindException;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -19,6 +23,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.ConstraintViolationException;
+import java.util.List;
 
 /**
  * 全局异常处理
@@ -93,23 +98,41 @@ public class GlobalExceptionHandler {
     @ExceptionHandler({
             ConstraintViolationException.class,
             MissingServletRequestParameterException.class,
-            MethodArgumentNotValidException.class,
-            HttpMessageNotReadableException.class
+            HttpMessageNotReadableException.class,
+            BindException.class
     })
     @ResponseBody
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public void resolveConstraintViolationException(ConstraintViolationException exception, HttpServletResponse response) {
+    public void resolveConstraintViolationException(Exception exception, HttpServletResponse response) {
         ResultBody resultBody = new ResultBody();
         Long errorCode = 5005L;
         String message = exception.getMessage();
-        Object data = exception.getConstraintViolations();
+        Object data = exception.getMessage();
         resultBody.setCode(errorCode);
         resultBody.setMessage(message);
         resultBody.setResult(data);
-        log.error("异常信息:{}", exception.getLocalizedMessage());
+        log.error("异常类信息:{}", exception.getClass().getName());
         log.error("异常信息:{},{}", exception.getMessage(), resultBody);
         ResponseUtils.write(response, resultBody);
     }
 
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    @ResponseBody
+    public String VarException(MethodArgumentNotValidException exception) {
+        ResultBody resultBody = new ResultBody();
+        Long errorCode = 4000L;
+        BindingResult bindingResult = exception.getBindingResult();
+        List<FieldError> fieldErrors = bindingResult.getFieldErrors();
+        StringBuffer message = new StringBuffer();
+        for (int i = 0; i < fieldErrors.size(); i++) {
+            message.append(fieldErrors.get(i).getDefaultMessage()).append(";");
+        }
+        // Object data = exception.getMessage();
+        resultBody.setCode(errorCode);
+        resultBody.setMessage(message.toString());
+        // resultBody.setResult(data);
+        log.error("异常信息:{}", JSONObject.toJSONString(resultBody));
+        return JSONObject.toJSONString(resultBody);
+    }
 }
 
