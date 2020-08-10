@@ -98,11 +98,11 @@ public class GlobalExceptionHandler {
     })
     @ResponseBody
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public void resolveConstraintViolationException(ConstraintViolationException exception, HttpServletResponse response) {
+    public void resolveConstraintViolationException(Exception exception, HttpServletResponse response) {
         ResultBody resultBody = new ResultBody();
         Long errorCode = 5005L;
         String message = exception.getMessage();
-        Object data = exception.getConstraintViolations();
+        Object data = exception.getMessage();
         resultBody.setCode(errorCode);
         resultBody.setMessage(message);
         resultBody.setResult(data);
