@@ -37,6 +37,15 @@
                 </exclusion>
             </exclusions>
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.openjdk.jol/jol-core -->
+        <!--java 对象内存分析工具 -->
+        <dependency>
+            <groupId>org.openjdk.jol</groupId>
+            <artifactId>jol-core</artifactId>
+            <version>0.11</version>
+        </dependency>
+
     </dependencies>
 
     <dependencyManagement>
