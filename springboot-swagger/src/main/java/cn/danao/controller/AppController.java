@@ -18,8 +18,9 @@ public class AppController {
 
     /**
      * 直接使用 @RequestMapping 可以避免出现空白提示页 但是swagger-ui.html页面请求不到 /v2/api-docs 可以
-     *
+     * <p>
      * 其中 @RequestMapping(value = "") 可以显示swagger-ui.html页面，但是无法替换空白页
+     *
      * @return 提示内容
      */
     @RequestMapping(value = "")
