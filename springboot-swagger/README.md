@@ -177,16 +177,67 @@
 
   swagger-bootstrap-ui 默认访问地址是：http://${host}:${port}/doc.html
 
-# apidoc在项目中的使用
+# apidoc 在项目中的使用
 
-- apidoc使用
+- apidoc 使用
 
-    [个人笔记网址](https://github.com/zhangymPerson/learning-notes/tree/master/programming-language/JavaScript/apidoc)
-    
+  [个人笔记网址](https://github.com/zhangymPerson/learning-notes/tree/master/programming-language/JavaScript/apidoc)
+
 - 使用步骤
 
-    1.创建apidoc的json配置文件 在项目名下，和 src 目录同一目录下
+  1.创建 apidoc 的 json 配置文件 在项目名下，和 src 目录同一目录下
+
+  2.在 src/目录的代码中 按照 apidoc 规则定义好相关的注释
+
+  3.在项目目录上执行 `apidoc -i src/ -o out/` 即可将 apidoc 生成的接口项目返回给前端
+
+# 项目中使用 swagger3 升级 swagger2
+
+## swagger 官网
+
+- https://swagger.io/
+
+## 升级方式
+
+### maven 接入
+
+- 修改 pom.xml
+
+  ```xml
+  <!--swagger3的依赖-->
+  <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-boot-starter</artifactId>
+            <version>${version.swagger}</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>spring-plugin-core</artifactId>
+                    <groupId>org.springframework.plugin</groupId>
+                </exclusion>
+            </exclusions>
+  </dependency>
+  <!-- jar包冲突 上面start的依赖版本太低-->
+  <dependency>
+      <groupId>org.springframework.plugin</groupId>
+      <artifactId>spring-plugin-core</artifactId>
+      <version>2.0.0.RELEASE</version>
+  </dependency>
+  <!--这个也需要依赖-->
+  <dependency>
+      <groupId>com.google.guava</groupId>
+      <artifactId>guava</artifactId>
+      <version>29.0-jre</version>
+  </dependency>
+  ```
+  
+- 报错 jar 包冲突，一般是版本不匹配，可升级jar包或者降级jar包
+
+- java.lang.NumberFormatException: For input string: ""
+
+    这个是swagger-model这个jar包不匹配，需要修改版本，先去掉旧的依赖，然后引入新的高版本的依赖
+
+- swagger3.0请求的地址是
+
+    http://127.0.0.1:8080/danao/swagger-ui/
     
-    2.在src/目录的代码中 按照apidoc规则定义好相关的注释
-    
-    3.在项目目录上执行 `apidoc -i src/ -o out/` 即可将apidoc生成的接口项目返回给前端
+    原请求地址请求不通
