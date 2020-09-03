@@ -5,7 +5,7 @@ import cn.danao.springboot.springbootkotlin.server.UserServer
 import org.springframework.stereotype.Service
 
 /**
- * 实现java接口
+ * kotlin 实现 java接口
  * 语法 class ClassName : InterfaceName {}
  */
 @Service(value = "userServerKotlin")
