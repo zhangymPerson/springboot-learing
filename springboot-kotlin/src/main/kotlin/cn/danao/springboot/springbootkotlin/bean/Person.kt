@@ -21,7 +21,11 @@ class Person(var firstName: String, val lastName: String, var age: Int) {
 class PersonDefault(var firstName: String = "first", val lastName: String = "last", var age: Int = 0);
 
 
-fun main() {
+/**
+ * 两个main函数
+ * 项目打包报错
+ */
+fun mains() {
     var p1 = Person("李", "四", 23)
     p1.print();
     //属性没有默认值时 不能使用无参构造
