@@ -13,6 +13,6 @@ import java.util.Map;
  */
 public interface ExceptionServer {
 
-    Map<String,Object> exceptionMethod(Map<String,Object> params);
+    Map<String, Object> exceptionMethod(Map<String, Object> params);
 
 }

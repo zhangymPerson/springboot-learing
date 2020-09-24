@@ -25,6 +25,7 @@ public class ExceptionController {
 
     @Autowired
     private ExceptionServer exceptionServer;
+
     /**
      * 运行时异常的捕获测试接口
      *
@@ -34,8 +35,8 @@ public class ExceptionController {
     public ResultCode test() {
         System.out.println("请求路由为e ");
         try {
-            Map<String,Object> result = exceptionServer.exceptionMethod(null);
-            return ResultCode.getResult(result);
+            Map<String, Object> result = exceptionServer.exceptionMethod(null);
+            return ResultCode.setResultObject(result);
         } catch (Exception e) {
             throw new SelfException(ExceptionCode.SELF_INFO.fillClassNameArgs(this.getClass(), e.getMessage()));
         }

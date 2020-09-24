@@ -4,12 +4,11 @@ package com.danao.exception;
  * @author danao
  * @version 1.0
  * @classname SelfException
- * @descriptionclass
- * 1.自定义异常测试类
+ * @descriptionclass 1.自定义异常测试类
  * @createdate 2019/5/23 10:19
  * @since 1.0
  */
-public class SelfException  extends RuntimeException{
+public class SelfException extends RuntimeException {
 
     private static final long serialVersionUID = 1L;
 
@@ -18,7 +17,7 @@ public class SelfException  extends RuntimeException{
      */
     private ExceptionCode exceptionCode;
 
-    public SelfException(String exceptionStr){
+    public SelfException(String exceptionStr) {
         super(exceptionStr);
     }
 

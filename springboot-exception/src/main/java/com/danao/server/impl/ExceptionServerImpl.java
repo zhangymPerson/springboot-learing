@@ -25,8 +25,8 @@ public class ExceptionServerImpl implements ExceptionServer {
             String s = "aaaa";
             int i = Integer.valueOf(s);
             return null;
-        }catch (Exception e){
-            throw new SelfException(ExceptionCode.SELF_INFO.fillClassNameArgs(this.getClass(),e.getMessage()));
+        } catch (Exception e) {
+            throw new SelfException(ExceptionCode.SELF_INFO.fillClassNameArgs(this.getClass(), e.getMessage()));
         }
     }
 }

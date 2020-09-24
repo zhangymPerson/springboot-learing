@@ -17,6 +17,15 @@ public class ExceptionCode {
     public static ExceptionCode SELF_INFO = new ExceptionCode("510", "自定义异常，异常信息：%s");
     public static ExceptionCode SUCCESS = new ExceptionCode("00000", "成功");
 
+    /**
+     * 必填项不能为空---具体必填项
+     */
+    public static ExceptionCode PARAMS_NOT_NULL_INFO = new ExceptionCode("400100", "必填项不能为空:%s");
+    /**
+     * 参数不合法--具体参数
+     */
+    public static ExceptionCode PARAMS_ILLEGAL_INFO = new ExceptionCode("400101", "参数不合法:%s");
+
     //=============================================阿里巴巴错误码代码=============================================================
     //客户端错误
     public static ExceptionCode USER_ERROR_0001 = new ExceptionCode("A0001", "用户端错误");

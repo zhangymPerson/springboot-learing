@@ -26,7 +26,7 @@ public class AppController {
      */
     @GetMapping
     public ResultCode testGet() {
-        return ResultCode.getResult("@GetMapping注解返回，所有不存在路径的GET都会返回");
+        return ResultCode.setResultObject("@GetMapping注解返回，所有不存在路径的GET都会返回");
     }
 
     /**
@@ -37,7 +37,7 @@ public class AppController {
      */
     @PostMapping
     public ResultCode testPost() {
-        return ResultCode.getResult("@PostMapping注解返回，所有不存在路径的Post都会返回");
+        return ResultCode.setResultObject("@PostMapping注解返回，所有不存在路径的Post都会返回");
     }
 
     /**
@@ -49,6 +49,6 @@ public class AppController {
      */
     @RequestMapping
     public ResultCode testRequest() {
-        return ResultCode.getResult("@RequestMapping注解返回，所有不存在路径都会返回");
+        return ResultCode.setResultObject("@RequestMapping注解返回，所有不存在路径都会返回");
     }
 }

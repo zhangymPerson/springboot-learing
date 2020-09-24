@@ -1,7 +1,5 @@
 package com.danao.bean;
 
-import java.util.Stack;
-
 /**
  * @author danao
  * @version 1.0
@@ -17,9 +15,9 @@ public class ResultCode {
     private String msg;
     private Object result;
 
-    public static ResultCode SUCCESS = new ResultCode(200L,"success","success");
+    public static ResultCode SUCCESS = new ResultCode(200L, "success", "success");
 
-    public static ResultCode FAIL = new ResultCode(500L,"fail","fail");
+    public static ResultCode FAIL = new ResultCode(500L, "fail", "fail");
 
     private ResultCode() {
     }
@@ -51,19 +49,12 @@ public class ResultCode {
         this.msg = msg;
     }
 
-    public Object getResult() {
-        return result;
-    }
 
-    public void setResult(Object object) {
-        this.result = object;
-    }
-
-    public static ResultCode getResult(Object object){
-        if(object == null){
-            return new ResultCode(200L,"succsee","");
+    public static ResultCode setResultObject(Object object) {
+        if (object == null) {
+            return new ResultCode(200L, "succsee", "");
         }
-        return new ResultCode(200L,"success",object);
+        return new ResultCode(200L, "success", object);
     }
 
 }

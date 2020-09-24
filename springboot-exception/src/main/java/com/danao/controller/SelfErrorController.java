@@ -39,7 +39,7 @@ public class SelfErrorController implements ErrorController {
      */
     @RequestMapping(value = "/error")
     public ResultCode error() {
-        return ResultCode.getResult("默认 error 路径的自定义错误返回页内容");
+        return ResultCode.setResultObject("默认 error 路径的自定义错误返回页内容");
     }
 
     /**
@@ -49,7 +49,8 @@ public class SelfErrorController implements ErrorController {
      */
     @RequestMapping(value = "/selferror")
     public ResultCode errors() {
-        return ResultCode.getResult("自定义 errors 错误返回页内容");
+        return ResultCode.setResultObject("自定义 errors 错误返回页内容");
     }
+
 
 }

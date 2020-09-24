@@ -14,9 +14,9 @@ import org.springframework.stereotype.Service;
 @Service
 public class HelloServer {
 
-    public int getInt(){
-        double i =1;
-        i =1/0;
+    public int getInt() {
+        double i = 1;
+        i = 1 / 0;
         return 2;
     }
 

@@ -74,21 +74,20 @@ public class HelloController {
         System.out.println("请求路由为 test 1 ");
         try {
             //测试map
-            Map<String,Object> allergyMap = new HashMap<String,Object>();
+            Map<String, Object> allergyMap = new HashMap<String, Object>();
             //有无过敏
-            allergyMap.put("is_allergy","有/无");
+            allergyMap.put("is_allergy", "有/无");
             //过敏物
-            allergyMap.put("allergy_thing","过敏物");
+            allergyMap.put("allergy_thing", "过敏物");
             //用户id
-            allergyMap.put("user_id","15235142525");
+            allergyMap.put("user_id", "15235142525");
             //成员id
-            allergyMap.put("member_id","45safd54sadf");
-            return ResultCode.getResult(allergyMap);
+            allergyMap.put("member_id", "45safd54sadf");
+            return ResultCode.setResultObject(allergyMap);
         } catch (Exception e) {
             throw new SelfException(ExceptionCode.SELF_INFO.fillClassNameArgs(this.getClass(), e.getMessage()));
         }
     }
-
 
 
 }
