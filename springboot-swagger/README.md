@@ -229,15 +229,31 @@
       <version>29.0-jre</version>
   </dependency>
   ```
-  
-- 报错 jar 包冲突，一般是版本不匹配，可升级jar包或者降级jar包
+
+- 报错 jar 包冲突，一般是版本不匹配，可升级 jar 包或者降级 jar 包
 
 - java.lang.NumberFormatException: For input string: ""
 
-    这个是swagger-model这个jar包不匹配，需要修改版本，先去掉旧的依赖，然后引入新的高版本的依赖
+  这个是 swagger-model 这个 jar 包不匹配，需要修改版本，先去掉旧的依赖，然后引入新的高版本的依赖
 
-- swagger3.0请求的地址是
+- swagger3.0 请求的地址是
 
-    http://127.0.0.1:8080/danao/swagger-ui/
-    
-    原请求地址请求不通
+  http://127.0.0.1:8080/danao/swagger-ui/
+
+  原请求地址请求不通
+
+- 使用 swagger 注意
+
+  注意事项一:
+
+  当 springboot 使用多环境时,需要注意 如 test,prod,dev 等,如果要在不同环境下使用
+  需要在 `cn.danao.conf.SwaggerConfig` 类中配置
+
+  ```java
+  //指定启用swagger环境
+  @Profile({"dev", "test", "prod"})
+  ```
+
+  注意事项二:
+
+  当使用 `@Api(tags="接口描述")` 这个注解时,不能有重复的内容.
