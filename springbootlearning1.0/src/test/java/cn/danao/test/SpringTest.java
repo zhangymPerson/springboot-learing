@@ -1,6 +1,8 @@
 package cn.danao.test;
 
 import cn.danao.controller.base.SpringBootBaseTest;
+import lombok.extern.slf4j.Slf4j;
+
 import org.junit.Test;
 
 /**
@@ -12,6 +14,7 @@ import org.junit.Test;
  * @createdate 2019/6/4 16:21
  * @since 1.0
  */
+@Slf4j
 public class SpringTest extends SpringBootBaseTest {
 
     @Test
@@ -21,6 +24,7 @@ public class SpringTest extends SpringBootBaseTest {
         String fileTyle=fileName.substring(fileName.lastIndexOf("."),fileName.length());
         System.out.println(fileName);
         System.out.println(fileTyle);
+        log.info("test");
     }
 
 }
