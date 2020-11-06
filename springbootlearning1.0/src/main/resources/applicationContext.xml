@@ -2,9 +2,11 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
-<!--
-    &lt;!&ndash;增加配置文件，代码获取方式为PropertyPlaceholder.getProperty("KEY")&ndash;&gt;
+    <!--增加配置文件，代码获取方式为PropertyPlaceholder.getProperty("KEY")-->
     <bean id="propertyConfigurer" class="cn.danao.conf.PropertyPlaceholder">
+        <!--ignoreUnresolvablePlaceholders为是否忽略不可解析的Placeholder，如配置了多个PropertyPlaceholderConfigurer，则需设置为true-->
+        <!--这个配置是由于启用这种配置方式 会导致 application 中的 test dev prod 各种环境配置失效的问题-->
+        <property name="ignoreUnresolvablePlaceholders" value="true"/>
         <property name="locations">
             <list>
                 <value>classpath*:test.properties</value>
@@ -13,6 +15,5 @@
         </property>
         <property name="fileEncoding" value="utf-8"/>
     </bean>
-    -->
 
 </beans>
