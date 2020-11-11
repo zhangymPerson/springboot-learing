@@ -3,6 +3,7 @@ package cn.danao;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.PropertySource;
 
 /**
  * @author zhang
@@ -14,6 +15,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @since 1.0
  */
 @SpringBootApplication
+@PropertySource(value = {"classpath:db.properties"})
 @MapperScan(basePackages = "cn.danao.dao")
 public class Applicattion {
 	public static void main(String[] args) {
