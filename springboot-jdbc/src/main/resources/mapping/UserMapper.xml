@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.danao.generator.dao.UserMapper" >
+  <resultMap id="BaseResultMap" type="cn.danao.generator.model.User" >
+    <id column="pid" property="pid" jdbcType="INTEGER" />
+    <result column="account" property="account" jdbcType="CHAR" />
+    <result column="email" property="email" jdbcType="CHAR" />
+    <result column="password" property="password" jdbcType="CHAR" />
+    <result column="name" property="name" jdbcType="CHAR" />
+    <result column="integrity" property="integrity" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    pid, account, email, password, name, integrity
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where pid = #{pid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from user
+    where pid = #{pid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.danao.generator.model.User" >
+    insert into user (pid, account, email, 
+      password, name, integrity
+      )
+    values (#{pid,jdbcType=INTEGER}, #{account,jdbcType=CHAR}, #{email,jdbcType=CHAR}, 
+      #{password,jdbcType=CHAR}, #{name,jdbcType=CHAR}, #{integrity,jdbcType=TINYINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.danao.generator.model.User" >
+    insert into user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="pid != null" >
+        pid,
+      </if>
+      <if test="account != null" >
+        account,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="integrity != null" >
+        integrity,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="pid != null" >
+        #{pid,jdbcType=INTEGER},
+      </if>
+      <if test="account != null" >
+        #{account,jdbcType=CHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=CHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=CHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=CHAR},
+      </if>
+      <if test="integrity != null" >
+        #{integrity,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.danao.generator.model.User" >
+    update user
+    <set >
+      <if test="account != null" >
+        account = #{account,jdbcType=CHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=CHAR},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=CHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=CHAR},
+      </if>
+      <if test="integrity != null" >
+        integrity = #{integrity,jdbcType=TINYINT},
+      </if>
+    </set>
+    where pid = #{pid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.danao.generator.model.User" >
+    update user
+    set account = #{account,jdbcType=CHAR},
+      email = #{email,jdbcType=CHAR},
+      password = #{password,jdbcType=CHAR},
+      name = #{name,jdbcType=CHAR},
+      integrity = #{integrity,jdbcType=TINYINT}
+    where pid = #{pid,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,5 +1,6 @@
 package cn.danao.controller;
 
+import cn.danao.bean.ResultCode;
 import cn.danao.bean.UserInfo;
 import cn.danao.conf.PropertiesConfig;
 import org.slf4j.Logger;
@@ -82,5 +83,22 @@ public class HelloController {
     public String getTokenTest(HttpServletRequest request, @RequestParam("word") String word, @RequestParam("type") String type) {
         logger.info("token = {} word = {} ,type = {}", request.getHeader("token"), word, type);
         return "success";
+    }
+
+    /**
+     * 配置 restful请求
+     * 其中请求方式为 get 时，配置请求参数可以为空的场景
+     * 第一：配置路由
+     * 第二：参数注解使用 required=false
+     * 否则，保存404找不到路由
+     *
+     * @param id
+     * @param date
+     * @return
+     */
+    @RequestMapping(value = {"/get/{id}/{date}", "/get/{id}"})
+    public ResultCode getHospitalInfo(@PathVariable String id, @PathVariable(required = false) String date) {
+        logger.info("id={},date={}", id, date);
+        return ResultCode.SUCCESS;
     }
 }
