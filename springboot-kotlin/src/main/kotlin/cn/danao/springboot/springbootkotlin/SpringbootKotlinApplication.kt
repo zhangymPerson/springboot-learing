@@ -6,7 +6,7 @@ import org.springframework.context.annotation.PropertySource
 
 @PropertySource(value = ["classpath:/env.properties", "classpath:/db.properties"])
 @SpringBootApplication
-class SpringbootKotlinApplication
+open class SpringbootKotlinApplication
 
 fun main(args: Array<String>) {
 	runApplication<SpringbootKotlinApplication>(*args)
