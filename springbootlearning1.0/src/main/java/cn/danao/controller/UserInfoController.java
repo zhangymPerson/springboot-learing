@@ -2,14 +2,12 @@ package cn.danao.controller;
 
 import cn.danao.bean.ResultCode;
 import cn.danao.bean.UserInfo;
+import cn.danao.server.MockService;
 import cn.danao.server.UserServer;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author danao
@@ -29,6 +27,9 @@ public class UserInfoController {
     @Qualifier("userServer1")
     public UserServer userServers1;
 
+    @Autowired
+    public MockService mockService;
+
     /**
      * 多个server实现时，可以通过Qualifier 注解来确认使用的是哪一个服务
      */
@@ -38,21 +39,27 @@ public class UserInfoController {
 
 
     @RequestMapping(value = "/test")
-    public ResultCode test(){
+    public ResultCode test() {
         return ResultCode.SUCCESS;
     }
 
-    @RequestMapping(value = "/create/1",method = RequestMethod.POST,produces = {"application/json;charset=UTF-8"})
-    public ResultCode createUser(@RequestBody UserInfo userInfo){
-        log.info("{}" ,userInfo);
+    @GetMapping(value = "/get/{id}")
+    public ResultCode getUser(@PathVariable Integer id) {
+        UserInfo user = mockService.getUser(id);
+        return ResultCode.getResultCode(user);
+    }
+
+    @RequestMapping(value = "/create/1", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
+    public ResultCode createUser(@RequestBody UserInfo userInfo) {
+        log.info("{}", userInfo);
         userServers1.createUser(userInfo);
         UserInfo u = userServers1.getUser(userInfo.getId());
         return ResultCode.getResultCode(u);
     }
 
-    @RequestMapping(value = "/create/2",method = RequestMethod.POST,produces = {"application/json;charset=UTF-8"})
-    public ResultCode createUserTwo(@RequestBody UserInfo userInfo){
-        log.info("{}" ,userInfo);
+    @RequestMapping(value = "/create/2", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
+    public ResultCode createUserTwo(@RequestBody UserInfo userInfo) {
+        log.info("{}", userInfo);
         userServers2.createUser(userInfo);
         UserInfo u = userServers2.getUser(userInfo.getId());
         return ResultCode.getResultCode(u);

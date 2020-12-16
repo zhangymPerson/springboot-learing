@@ -2,18 +2,17 @@ package cn.danao.server;
 
 import cn.danao.bean.UserInfo;
 
-public interface UserServer {
+/**
+ * 测试mock的接口
+ */
+public interface MockService {
 
     /**
      * 根据id获取用户
+     *
      * @param userId
      * @return
      */
-    UserInfo getUser(int userId);
-
-    /**
-     * 创建用户
-     */
-    void createUser(UserInfo userInfo);
+    public UserInfo getUser(int userId);
 
 }
