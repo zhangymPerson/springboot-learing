@@ -1,10 +1,14 @@
 package cn.danao.controller;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 
 /**
  * @author danao
@@ -20,6 +24,23 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping(value = "/view")
 public class ViewController {
 
+    /**
+     * 服务地址
+     */
+    @Value("${project.local.ip}")
+    private String ip;
+
+    /**
+     * 端口
+     */
+    @Value("${server.port}")
+    private String port;
+
+    /**
+     * 配置的前置路由地址
+     */
+    @Value("${server.servlet.context-path}")
+    private String path;
 
     @ResponseBody
     @RequestMapping("/hello")
@@ -29,8 +50,21 @@ public class ViewController {
 
     @RequestMapping("/index")
     public String index(ModelMap map) {
-        map.addAttribute("host", "http://blog.didispace.com");
+        map.addAttribute("real_ip", getRealIP());
+        map.addAttribute("ip", ip);
+        map.addAttribute("port", port);
+        map.addAttribute("path", path);
         return "index";
+    }
+
+    public String getRealIP() {
+        InetAddress address = null;
+        try {
+            address = InetAddress.getLocalHost();
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+        }
+        return address.getHostAddress();
     }
 
 }
