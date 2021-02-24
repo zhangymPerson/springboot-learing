@@ -43,6 +43,10 @@ public class ResultCode {
         return new ResultCode(200,"SUCCESS",data);
     }
 
+    public static ResultCode error(Object data){
+        return new ResultCode(500,"error",data);
+    }
+
     public Object getData() {
         return data;
     }

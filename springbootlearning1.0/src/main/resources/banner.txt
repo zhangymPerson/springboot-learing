@@ -7,6 +7,6 @@
         | |                  __/ |
         |_|                 |___/
 
-Console: http://${project.local.ip}:${server.port}${server.servlet.context-path}/index.html
+Console: http://${project.local.ip}:${server.port}${server.servlet.context-path}/view/index
 Port: ${server.port}
 Pid: ${pid}
