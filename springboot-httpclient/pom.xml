@@ -9,7 +9,7 @@
     <version>1.0-SNAPSHOT</version>
 
     <properties>
-        <httpclient.version>4.5.7</httpclient.version>
+        <httpclient.version>4.5.13</httpclient.version>
         <fastjson.version>1.2.25</fastjson.version>
         <version.swagger>2.9.2</version.swagger>
         <!-- 文件拷贝时的编码 -->
