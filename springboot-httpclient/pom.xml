@@ -10,7 +10,7 @@
 
     <properties>
         <httpclient.version>4.5.13</httpclient.version>
-        <fastjson.version>1.2.25</fastjson.version>
+        <fastjson.version>1.2.83</fastjson.version>
         <version.swagger>2.9.2</version.swagger>
         <!-- 文件拷贝时的编码 -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
