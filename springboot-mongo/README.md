@@ -32,12 +32,12 @@
 
 ## 两种操作 mongo 数据库的方式
 
-### 自定义 dao 接口并实现
+- 自定义 dao 接口并实现
 
-如：`cn.danao.dao.UserDao` 类 需要自定义实现 `cn.danao.dao.imp.UserDaoImp`，使用 `mongoTemplate` 对象注入，并操作 mongo 库
+  如：`cn.danao.dao.UserDao` 类 需要自定义实现 `cn.danao.dao.imp.UserDaoImp`，使用 `mongoTemplate` 对象注入，并操作 mongo 库
 
-### 继承 MongoRepository<> 接口
+- 继承 MongoRepository<> 接口
 
-如：`cn.danao.dao.UserTwoDao` 不需要自己实现 里面有常用的方法实现
+  如：`cn.danao.dao.UserTwoDao` 不需要自己实现 里面有常用的方法实现
 
-可自己增加自定义的查询，需要按照一定的规则，可参考此类的实现
+  可自己增加自定义的查询，需要按照一定的规则，可参考此类的实现

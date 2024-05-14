@@ -27,8 +27,9 @@
 
   http://localhost:port/swagger-ui.html
 
-* swagger 的常用注解
+- swagger 的常用注解
 
+  ```java
   @ApiOperation：用在方法上，说明方法的作用
 
         value: 表示接口名称
@@ -56,6 +57,7 @@
   message：返回自定义信息
   response：抛出异常的类
   @ApiIgnore: 表示该接口函数不对 swagger2 开放展示
+  ```
 
 ## swagger 配置类
 

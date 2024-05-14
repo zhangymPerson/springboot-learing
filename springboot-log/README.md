@@ -56,6 +56,7 @@
 
 - JSR 提供的校验注解：
 
+  ```java
   @AssertFalse 被注释的元素只能为 false
   @AssertTrue 被注释的元素只能为 true
   @DecimalMax 被注释的元素必须小于或等于{value}
@@ -99,6 +100,7 @@
   @URL                    被注释的元素需要是一个合法的URL
   @DurationMax            被注释的元素必须小于${inclusive == true ? '或等于' : ''}${days == 0 ? '' : days += '天'}${hours == 0 ? '' : hours += '小时'}${minutes == 0 ? '' : minutes += '分钟'}${seconds == 0 ? '' : seconds += '秒'}${millis == 0 ? '' : millis += '毫秒'}${nanos == 0 ? '' : nanos += '纳秒'}
   @DurationMin 被注释的元素必须大于${inclusive == true ? '或等于' : ''}${days == 0 ? '' : days += '天'}${hours == 0 ? '' : hours += '小时'}${minutes == 0 ? '' : minutes += '分钟'}${seconds == 0 ? '' : seconds += '秒'}${millis == 0 ? '' : millis += '毫秒'}\${nanos == 0 ? '' : nanos += '纳秒'}
+  ```
 
 - 在 logback-spring.xml 配置文件中配置输出位置
 
