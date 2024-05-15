@@ -69,3 +69,5 @@ fabric.properties
 *.prefs
 *.factorypath
 *.json
+
+.mvn/
