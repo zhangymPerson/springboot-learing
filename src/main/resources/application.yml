@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: springboot-learing
+# ??
+server:
+  port: 8080
+  servlet:
+    # ???? api
+    context-path: /api
+
