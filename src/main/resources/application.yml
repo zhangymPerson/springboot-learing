@@ -17,3 +17,9 @@ server:
   port: 8080
   servlet:
     context-path: /api
+
+# 配置mybatis规则
+mybatis:
+  mapper-locations: classpath:mybatis/mapper/*.xml  #sql映射文件位置
+  configuration:
+    map-underscore-to-camel-case: true
