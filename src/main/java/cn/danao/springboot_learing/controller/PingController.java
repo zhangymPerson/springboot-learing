@@ -1,5 +1,6 @@
 package cn.danao.springboot_learing.controller;
 
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -14,7 +15,12 @@ public class PingController {
 
     @GetMapping("/ping")
     public String ping() {
-        return "ping";
+        String version = System.getenv("VERSION");
+        // 非空则返回version
+        if (StringUtils.hasText(version)) {
+            return version;
+        }
+        return "pong";
     }
 
 }

@@ -71,3 +71,6 @@ fabric.properties
 *.json
 
 .mvn/
+
+# sqlite
+*.db
