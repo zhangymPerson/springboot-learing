@@ -30,7 +30,7 @@ public interface UserService {
     /**
      * 根据主键 id 查询
      */
-    public User load(int id);
+    public User getById(int id);
 
     /**
      * 分页查询

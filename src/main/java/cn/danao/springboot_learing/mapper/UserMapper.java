@@ -42,7 +42,7 @@ public interface UserMapper {
      * @author BEJSON
      * @date 2024/10/16
      **/
-    User load(int id);
+    User getById(int id);
 
     /**
      * 查询 分页查询
